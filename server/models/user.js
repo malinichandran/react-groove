@@ -55,11 +55,11 @@ class User {
 
      static async register({
           username,
-          firstName, 
-          lastName, 
+          first_name, 
+          last_name, 
           email, 
           password,
-          profilePic,
+          profile_pic,
          country}) {
 
         const duplicateCheck = await db.query(
@@ -92,11 +92,11 @@ class User {
                         country`,
                     [
                         username,
-                        firstName,
-                        lastName,
+                        first_name,
+                        last_name,
                         email,
                         hashedPassword,
-                        profilePic,
+                        profile_pic,
                         country,
                     ],
         );
@@ -115,7 +115,7 @@ class User {
       static async findAll(){
           const result = await db.query(
               `SELECT username,
-                     first_name AS firstName,
+                     first_name AS "firstName",
                      last_name AS "lastName",
                      email,
                      profile_pic,

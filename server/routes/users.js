@@ -34,7 +34,21 @@ const router =  express.Router();
 //         return next(err);
 //     }
 // })
+/** GET / => { users: [ {username, first_name, last_name, email, profile_pic, country }, ... ] }
+ *
+ * Returns list of all users.
+ *
+ * Authorization required: admin
+ **/
 
+router.get("/", ensureLoggedIn, async function (req, res, next) {
+    try {
+      const users = await User.findAll();
+      return res.json({ users });
+    } catch (err) {
+      return next(err);
+    }
+  });
 /** GET  /[username] => {user}
  * 
  * Returns { username, first_name, last_name, email, profile_pic, country, playlists}
