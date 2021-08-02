@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "playlist_name": "",
+            "PUBLIC_PRIVATE_FLAG": false
+        }
+    ],
+    "required": [],
+    
+    "properties": {
+        "playlist_name": {
+            "maxLength": 25,
+            "minLength": 1,
+            "type": "string"
+        },
+        "description":{
+            "type":"string"
+        },
+        "PUBLIC_PRIVATE_FLAG": {
+            "type": "boolean"
+        }
+    },
+    "additionalProperties": true
+}

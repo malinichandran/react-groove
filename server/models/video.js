@@ -7,7 +7,7 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 /** Related functions for videos */
 
 class Video {
-/** Create a video from data, uodate db, return new video data.
+/** Create a video from data, update db, return new video data.
  * 
  * data should be {api_video_id}
  * 
@@ -16,7 +16,7 @@ class Video {
  * throws BadRequestError if api_video_id already exists in videos table
   */
 
-  static async create(api_video_id, playlist_id){
+  static async create(api_video_id, playlist_name, username){
       const videoDuplicateCheck = await db.query(
           `SELECT api_video_id, website, playlist_id
             FROM videos
@@ -26,6 +26,12 @@ class Video {
 
       if(videoDuplicateCheck.rows[0])
          return;
+        
+      const playlist_id = await db.query(
+          `SELECT playlist_id FROM playlists
+           WHERE playlist_name = $1 
+           AND username = $2`,[playlist_name, username]
+      );    
 
       const result = await db.query(
             `INSERT INTO videos 
@@ -39,4 +45,22 @@ class Video {
       return video;
   }
   
+  /** Delete a video from a playlist */
+  static async remove(video_id, playlist_name, username){
+    const playlist_id = await db.query(
+        `SELECT playlist_id FROM playlists
+         WHERE playlist_name = $1 
+         AND username = $2`,[playlist_name, username]
+    );    
+      const result = await db.query(
+        `DELETE FROM videos 
+         WHERE playlist_id = $1 AND api_video_id =$2
+         RETURNING playlist_id`,[playlist_id, video_id]
+      );
+      const video = result.rows[0];
+
+      if(!video) throw new NotFoundError(`No Video Found:`)
+  }
 }
+
+module.exports = Video;

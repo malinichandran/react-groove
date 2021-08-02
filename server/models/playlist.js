@@ -7,14 +7,14 @@ const { sqlForPartialUpdate } =  require("../helpers/sql");
 class Playlist {
     /** Create a playlist from data, update db, return new company data.
      * 
-     * data should be { username, playlist_name, PUBLIC_PRIVATE_FLAG}
+     * data should be { username, playlist_name, description, PUBLIC_PRIVATE_FLAG}
      * 
-     * Returns { username, playlist_name, PUBLIC_PRIVATE_FLAG}
+     * Returns { username, playlist_name, description, PUBLIC_PRIVATE_FLAG}
      * 
      * throws BadRequestError if playlist_name already exists in users playlist
      */
 
-     static async create( { username, playlist_name, PUBLIC_PRIVATE_FLAG }){
+     static async create( { username, playlist_name, description, PUBLIC_PRIVATE_FLAG }){
          const playlistDuplicateCheck = await db.query(
                     `SELECT playlist_name 
                      FROM playlists
@@ -28,9 +28,9 @@ class Playlist {
             const result = await db.query(
                     `INSERT INTO playlists 
                      (username, playlist_name, PUBLIC_PRIVATE_FLAG)
-                     VALUES ($1, $2, $3)
-                     RETURNING username, playlist_name, PUBLIC_PRIVATE_FLAG`,
-                     [ username, playlist_name, PUBLIC_PRIVATE_FLAG],
+                     VALUES ($1, $2, $3, $4)
+                     RETURNING username, playlist_name, description, PUBLIC_PRIVATE_FLAG`,
+                     [ username, playlist_name, description,PUBLIC_PRIVATE_FLAG],
             );
 
             const playlist = result.rows[0];
@@ -44,6 +44,7 @@ class Playlist {
         const playlistsRes = await db.query(
             `SELECT username, 
              playlist_name, 
+             description,
              PUBLIC_PRIVATE_FLAG
              FROM playlists
              WHERE username = $1`,
@@ -59,14 +60,18 @@ class Playlist {
      * 
      * 
      */
-    static async get(playlist_name){
+    static async getVideos(playlist_name, username){
+        playlist_id =  await db.query(
+                        `SELECT id from playlists 
+                         WHERE playlist_name = $1
+                         AND username = $2`,
+                         [playlist_name, username]
+        );
        const videoRes = await db.query(
-              `SELECT api_video_id, playlist_name
+              `SELECT api_video_id
                FROM videos
-               JOIN playlists ON
-               videos.playlist_id=playlists.id
-               WHERE playlist_name = $1`,
-               [playlist_name]
+               WHERE playlist_id = $1`,
+               [playlist_id]
        );
 
           const videos = videoRes.rows;
@@ -79,9 +84,9 @@ class Playlist {
       * This is a partial update- it is fine if data doesnt contain all the 
       * fields; this only changes provided ones.
       * 
-      * data can include: { playlist_name, PUBLIC_PRIVATE_FLAG }
+      * data can include: { playlist_name, description, PUBLIC_PRIVATE_FLAG }
       * 
-      * Returns { username, playlist_name, PUBLIC_PRIVATE_FLAG }
+      * Returns { username, playlist_name,description, PUBLIC_PRIVATE_FLAG }
       * 
       * Throws NotFoundError if not found.
      */
@@ -101,6 +106,7 @@ class Playlist {
                             WHERE playlist_name = ${handleVarIdx}
                             RETURNING username,
                                       playlist_name,
+                                      description,
                                       PUBLIC_PRIVATE_FLAG`;
 
         const result = await db.query(querySql, [...values, playlist_name]);
