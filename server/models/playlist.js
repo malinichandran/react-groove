@@ -27,10 +27,10 @@ class Playlist {
 
             const result = await db.query(
                     `INSERT INTO playlists 
-                     (username, playlist_name, PUBLIC_PRIVATE_FLAG)
+                     (username, playlist_name, description, PUBLIC_PRIVATE_FLAG)
                      VALUES ($1, $2, $3, $4)
                      RETURNING username, playlist_name, description, PUBLIC_PRIVATE_FLAG`,
-                     [ username, playlist_name, description,PUBLIC_PRIVATE_FLAG],
+                     [ username, playlist_name, description, PUBLIC_PRIVATE_FLAG],
             );
 
             const playlist = result.rows[0];
