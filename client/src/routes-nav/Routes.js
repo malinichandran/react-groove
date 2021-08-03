@@ -1,9 +1,10 @@
-import React from "react";
+import React ,{useState, useContext} from "react";
+import GrooveApi from "../api/api";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Homepage from "../homepage/Homepage";
 import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
-
+import UserContext from "../auth/UserContext";
 import ListOfPlaylists from "../playlists/ListOfPlaylists";
 import PrivateRoute from "../routes-nav/PrivateRoute";
 
@@ -16,7 +17,9 @@ import PrivateRoute from "../routes-nav/PrivateRoute";
  * visiting a non-existent route redirects to the homepage
  */
 
- function Routes({ login, signup , playlists}){
+ function Routes({ login, signup }){
+     const { currentUser } = useContext(UserContext);
+    const [playlists, setPlaylists] = useState([]);
     console.debug(
         "Routes",
         `login=${typeof login}`,
@@ -25,6 +28,19 @@ import PrivateRoute from "../routes-nav/PrivateRoute";
     );
     console.log(playlists)
     
+    async function getPlaylists(){
+        let username = currentUser.username;
+        try{
+          let result = await GrooveApi.getPlaylists(username)
+          setPlaylists(result);
+          
+          
+        } catch (errors){
+          console.error("Error fetching data", errors);
+          return { success: false, errors };
+        }
+      }
+
     return(
         <div className="pt-5">
             <Switch>
@@ -39,7 +55,7 @@ import PrivateRoute from "../routes-nav/PrivateRoute";
                      <SignupForm signup={signup} />
               </Route>
               <PrivateRoute exact path="/playlists">
-                  <ListOfPlaylists playlists={()=>playlists}/>
+                  <ListOfPlaylists playlists={getPlaylists}/>
               </PrivateRoute>
               
             </Switch>

@@ -38,7 +38,7 @@ export const TOKEN_STORAGE_ID = "groove-token";
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const [playlists, setPlaylists] = useState([]);
+  
 
   console.debug(
     "App",
@@ -132,18 +132,7 @@ export const TOKEN_STORAGE_ID = "groove-token";
       setSelectedVideo(video);
   }
   
-  async function getPlaylists(){
-    let username = currentUser.username;
-    try{
-      let result = await GrooveApi.getPlaylists(username)
-      setPlaylists(result);
-      
-      
-    } catch (errors){
-      console.error("Error fetching data", errors);
-      return { success: false, errors };
-    }
-  }
+  
 
   if(!infoLoaded) return <LoadingSpinner/>;
 
@@ -155,7 +144,7 @@ export const TOKEN_STORAGE_ID = "groove-token";
           value={{ currentUser, setCurrentUser}}>
               <div className="App">
                   <Navigation logout={logout}/>
-                  <Routes login={login} signup={signup} playlists={getPlaylists}/>
+                  <Routes login={login} signup={signup}/>
               </div>
         
       <div className='ui container' style={{marginTop: '1em'}}>
