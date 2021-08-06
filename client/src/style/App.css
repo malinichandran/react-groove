@@ -1,4 +1,4 @@
-html {
+/* html {
   height: 100vh;
   font-family: sans-serif;
   box-sizing: border-box;
@@ -46,4 +46,11 @@ body,
 
 .form-controls label {
   display: none;
+} */
+
+.other-content{
+  position: 'relative';
+  z-Index: 2;
+  background-Color: 'red';
+  padding: '10px';
 }

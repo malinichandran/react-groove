@@ -57,6 +57,19 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
     return res.token;
   }
 
+  /** Save user profile page */
+  static async saveProfile(username, data){
+      let res = await this.request(`users/${username}`, data, "patch");
+      return res.user;
+  }
+
+  /** Add video to a playlist */
+  static async addVideo(playlist_name, username, data){
+     let res = await this.request(`playlists/${playlist_name}`, username, data, "post")
+     return res.video;
+    }
+
  }
+
 
  export default GrooveApi;

@@ -1,14 +1,19 @@
 import React from 'react';
-import '../style/video.css';
+import './video.css';
+import PlaylistVideos from "../playlists/PlaylistVideos";
 
 const VideoItem = ({video , handleVideoSelect}) => {
     return (
+        <>
         <div onClick={ () => handleVideoSelect(video)} className=' video-item item'>
-            <img className='ui image' src={video.snippet.thumbnails.high.url} alt={video.snippet.description}/>
+            <img className='ui image' src={video.snippet.thumbnails.medium.url} alt={video.snippet.description}/>
             <div className='content'>
                 <div className='header '>{video.snippet.title}</div>
             </div>
+            
         </div>
+        <PlaylistVideos video={video}/>
+       </>
     )
 };
 export default VideoItem;

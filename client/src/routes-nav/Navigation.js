@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import "./Navigation.css";
+import "../search/SearchBar";
+import Searchbar from "../search/SearchBar";
 
 /** Navigation bar for site. Shows up on every page.
  * 
@@ -38,6 +40,7 @@ import "./Navigation.css";
                      Log out {currentUser.first_name || currentUser.username}
                     </NavLink>
                 </li>
+                
             </ul>
         );
     }
@@ -55,6 +58,7 @@ import "./Navigation.css";
                         Sign Up
                     </NavLink>
                 </li>
+                
             </ul>
         );
     }

@@ -11,7 +11,7 @@ import SearchBar from './search/SearchBar';
 import youtube from './api/Youtube';
 import VideoList from './search/VideoList';
 import VideoDetail from './search/VideoDetail';
-
+import "./style/App.css";
 
 //key name for storing token in local storage for "remember-me" re login
 
@@ -36,8 +36,8 @@ export const TOKEN_STORAGE_ID = "groove-token";
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
-  const [videos, setVideos] = useState([]);
-  const [selectedVideo, setSelectedVideo] = useState(null);
+//   const [videos, setVideos] = useState([]);
+//   const [selectedVideo, setSelectedVideo] = useState(null);
   
 
   console.debug(
@@ -90,6 +90,7 @@ export const TOKEN_STORAGE_ID = "groove-token";
   * 
   */
 
+
   async function signup(signupData){
       try{
           let token = await GrooveApi.signup(signupData);
@@ -112,25 +113,33 @@ export const TOKEN_STORAGE_ID = "groove-token";
           return { success: false, errors};
       }
   }
- 
-  async function handleSubmit(termFromSearchBar){
-      try{
-        const response = await youtube.get('/search', {
-            params: {
-                q: termFromSearchBar
-            }
-        })
-        setVideos(response.data.items);
-        console.log("this is response", response);
-      } catch (errors){
-        console.error("data fetch failed", errors);
-        return { success: false, errors};
-      }
-  }
 
-  function handleVideoSelect(video){
-      setSelectedVideo(video);
-  }
+//   async function getUserInfo(){
+//     try{
+//         let user = await GrooveApi.getCurrentUser(currentUser.username);
+//     }catch (errors){
+
+//     }
+//   }
+ 
+//   async function handleSubmit(termFromSearchBar){
+//       try{
+//         const response = await youtube.get('/search', {
+//             params: {
+//                 q: termFromSearchBar
+//             }
+//         })
+//         setVideos(response.data.items);
+//         console.log("this is response", response);
+//       } catch (errors){
+//         console.error("data fetch failed", errors);
+//         return { success: false, errors};
+//       }
+//   }
+
+//   function handleVideoSelect(video){
+//       setSelectedVideo(video);
+//   }
   
   
 
@@ -142,13 +151,14 @@ export const TOKEN_STORAGE_ID = "groove-token";
       
         <UserContext.Provider
           value={{ currentUser, setCurrentUser}}>
-              <div className="App">
+              <div className="App other-content">
                   <Navigation logout={logout}/>
-                  <Routes login={login} signup={signup}/>
+                  <Routes login={login} signup={signup} profile={currentUser}/>
+                  
               </div>
         
-      <div className='ui container' style={{marginTop: '1em'}}>
-      <SearchBar handleFormSubmit={handleSubmit}/>
+      {/* <div className='ui container' style={{marginTop: '1em'}}>
+     
       <div className='ui grid'>
           <div className="ui row">
               <div className="eleven wide column">
@@ -159,7 +169,7 @@ export const TOKEN_STORAGE_ID = "groove-token";
               </div>
           </div>
       </div>
-  </div>
+  </div> */}
   </UserContext.Provider>
         
       </BrowserRouter>

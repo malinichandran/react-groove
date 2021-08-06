@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import"./Homepage.css";
 import UserContext from "../auth/UserContext";
+import SearchBar from "../search/SearchBar";
 
 /*** Homepage of site 
  * 
@@ -18,6 +19,9 @@ function Homepage() {
 
     return (
         <div className="Homepage">
+                 <div >
+                    <SearchBar/>
+                </div>
             <div className="container text-center">
                 <h1 className="mb-4 font-weight-bold">
                     Groove
@@ -25,6 +29,7 @@ function Homepage() {
                 <p className="lead">
                     One stop for all your favorite music
                 </p>
+
                 {currentUser
                    ? <h2>
                        Welcome Back, {currentUser.first_name || currentUser.username}!
@@ -37,6 +42,7 @@ function Homepage() {
                            <Link className="btn btn-dark font-weight-bold" to="/signup">
                             Sign Up
                            </Link>
+                          
                        </p>
                    )}
             </div>
