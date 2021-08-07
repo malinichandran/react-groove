@@ -20,12 +20,12 @@ import PlaylistVideos from "../playlists/PlaylistVideos";
 
  function Routes({ login, signup, profile }){
      
-    console.debug(
-        "Routes",
-        `login=${typeof login}`,
-        `signup=${typeof signup}`,
+    // console.debug(
+    //     "Routes",
+    //     `login=${typeof login}`,
+    //     `signup=${typeof signup}`,
     
-    );
+    // );
     
 
    

@@ -64,10 +64,12 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
   }
 
   /** Add video to a playlist */
-  static async addVideo(playlist_name, username, data){
-     let res = await this.request(`playlists/${playlist_name}`, username, data, "post")
+ 
+  static async addVideo(playlist_name, username, video){
+     let res = await this.request(`playlists/${playlist_name}`, username, video, "post")
      return res.video;
     }
+
 
  }
 

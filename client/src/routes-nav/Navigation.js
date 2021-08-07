@@ -15,7 +15,7 @@ import Searchbar from "../search/SearchBar";
 
  function Navigation( {logout} ) {
     const { currentUser } = useContext(UserContext);
-    console.debug("Navigation", "currentUser=", currentUser);
+    //console.debug("Navigation", "currentUser=", currentUser);
 
     function loggedInNav(){
         return (
