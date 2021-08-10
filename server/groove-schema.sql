@@ -29,8 +29,3 @@ CREATE TABLE follows (
     users_following_id VARCHAR(25) NOT NULL REFERENCES users ON DELETE CASCADE
 );
 
--- CREATE TABLE playlist_videos(
---     id SERIAL PRIMARY KEY,
---     video_id INTEGER NOT NULL REFERENCES videos ON DELETE CASCADE,
---     playlist_id INTEGER NOT NULL REFERENCES playlists ON DELETE CASCADE
--- );

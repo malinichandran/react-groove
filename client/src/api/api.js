@@ -77,7 +77,12 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
         //return res;
         console.log(res);
    }
+  /** Get videos of a playlist */
 
+  static async getVideos( username, playlist_name){
+      let res = await this.request(`playlists/${username}/${playlist_name}`);
+      return res.videos;
+  }
  }
 
 

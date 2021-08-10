@@ -8,21 +8,22 @@ import VideoContext from "../auth/VideoContext";
 
 
 function PlaylistVideos(){
-    const { video } = useContext(VideoContext);
-   console.log(video.id.videoId);
+   // const { video } = useContext(VideoContext);
+   //console.log(video.id.videoId);
   const [saveConfirmed, setSaveConfirmed] = useState(false);
      const [errors, setErrors] = useState([]);
-//    const {currentUser} = useContext(UserContext);
-//     const {playlist_name} = useParams();
-//     console.log(playlist_name);
-//     console.log(currentUser.username)
-//     let username = currentUser.username;
+   const {currentUser} = useContext(UserContext);
+  const {playlist_name} = useParams();
+     console.log(playlist_name);
+    console.log(currentUser.username)
+    let username = currentUser.username;
 //     let addedVideo;
 
-//     useEffect(function callAddVideo(){
-//         addVideo(video);
-//       }, []);
-//     //const [videos, setVideos] = useState([]);
+    useEffect(function callGetVideos(){
+        getVideos(playlist_name);
+      }, []);
+
+const [videos, setVideos] = useState([]);
 //     async function addVideo(video){
 //         let videoData = {
 //             api_video_id: video.id.videoId,
@@ -40,9 +41,22 @@ function PlaylistVideos(){
 //         setSaveConfirmed(true);
 //     }
     //addVideo()
+async function getVideos(playlist_name){
+    console.log("getVideoscalled")
+    try{
+        
+        const result = await GrooveApi.getVideos(username, playlist_name);
+        console.log(result);
+        setVideos(result);
+    }catch(errors){
+        setErrors(errors)
+        return;
+    }
+}
+console.log(videos);
    return(
       <>
-      <div>
+      {/* <div>
            
           {errors.length
                   ? <Alert type="danger" messages={errors} />
@@ -53,7 +67,14 @@ function PlaylistVideos(){
                   <Alert type="success" messages={["Video added to playlist successfully."]} />
                   : null}
                 
-       </div>
+       </div> */}
+       {/* <div>
+           {videos.map(video=>
+            <li key={video.id}>{video.api_video_id}</li>
+           
+               
+           )}
+       </div> */}
        
        </>
    )

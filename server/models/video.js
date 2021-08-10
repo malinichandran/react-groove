@@ -16,7 +16,7 @@ class Video {
  * throws BadRequestError if api_video_id already exists in videos table
   */
 
-  static async create(api_video_id, playlist_name, username){
+  static async create(playlist_name, username, api_video_id){
       const videoDuplicateCheck = await db.query(
           `SELECT api_video_id, website, playlist_id
             FROM videos

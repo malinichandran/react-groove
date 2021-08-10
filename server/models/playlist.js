@@ -60,12 +60,12 @@ class Playlist {
      * 
      * 
      */
-    static async getVideos(playlist_name, username){
-        playlist_id =  await db.query(
-                        `SELECT id from playlists 
-                         WHERE playlist_name = $1
-                         AND username = $2`,
-                         [playlist_name, username]
+    static async getVideos(username, playlist_name){
+        let playlist_id =  await db.query(
+                        `SELECT id FROM playlists 
+                         WHERE username = $1
+                         AND playlist_name = $2`,
+                         [username, playlist_name]
         );
        const videoRes = await db.query(
               `SELECT api_video_id
@@ -75,7 +75,7 @@ class Playlist {
        );
 
           const videos = videoRes.rows;
-
+        console.log(videos);
           return videos;
            }
     
@@ -110,7 +110,7 @@ class Playlist {
                                       PUBLIC_PRIVATE_FLAG`;
 
         const result = await db.query(querySql, [...values, playlist_name]);
-        const playlist = reault.rows[0];
+        const playlist = result.rows[0];
 
         if(!playlist) throw new NotFoundError(`No Playlist: ${playlist_name}`);
 

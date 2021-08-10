@@ -57,9 +57,9 @@ const router = new express.Router();
    * {videos : [...api_video_id]}
   */
 
-  router.get("/:playlist_id", ensureCorrectUser, async function(req, res, next) {
+  router.get("/:username/:playlist_name", ensureCorrectUser, async function(req, res, next) {
       try{
-         const videos = await Playlist.getVideos(req.params.playlist_id);
+         const videos = await Playlist.getVideos(req.params.username, req.params.playlist_name);
          return res.json({ videos });
       } catch(err) {
         return next(err);
@@ -115,7 +115,7 @@ const router = new express.Router();
         const errs = validator.errors.map(e => e.stack);
         throw new BadRequestError(errs);
       }
-      const video = await Video.create(req.body, req.params.playlist_name, username);
+      const video = await Video.create(req.params.playlist_name, username, req.body);
       return res.status(201).json({ video });
      } catch(err){
          return next(err);
