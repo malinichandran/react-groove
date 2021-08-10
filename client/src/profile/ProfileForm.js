@@ -2,15 +2,18 @@ import React, {useState, useContext} from "react";
 import UserContext from "../auth/UserContext";
 import GrooveApi from "../api/api";
 import Alert from "../common/Alert";
+import "./ProfileForm.css";
+import { useHistory } from "react-router-dom";
 
 function ProfileForm(){
+  const history = useHistory();
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const [formData, setFormData] = useState({
-        firstName: currentUser.firstName,
-        lastName: currentUser.lastName,
+        first_name: currentUser.firstName,
+        last_name: currentUser.lastName,
         email: currentUser.email,
         password: "",
-        profilePic: currentUser.profile_pic,
+        profile_pic: currentUser.profile_pic,
         country: currentUser.country,
     });
     const [formErrors, setFormErrors] = useState([]);
@@ -21,8 +24,8 @@ function ProfileForm(){
         evt.preventDefault();
 
         let profileData = {
-            firstName: formData.firstName,
-            lastName: formData.lastName,
+            first_name: formData.first_name,
+            last_name: formData.last_name,
             email: formData.email,
             password: formData.password,
             profile_pic: formData.profile_pic,
@@ -34,6 +37,7 @@ function ProfileForm(){
 
         try{
             updatedUser = await GrooveApi.saveProfile(username, profileData);
+           
         } catch(errors) {
         
             setFormErrors(errors);
@@ -44,6 +48,7 @@ function ProfileForm(){
         setSaveConfirmed(true);
 
         setCurrentUser(updatedUser);
+        history.push("/profile")
     }
 
     /** Handle form data changing */
@@ -58,8 +63,9 @@ function ProfileForm(){
 
 
    return(
-    <div className="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
-    <h3>Profile</h3>
+     <div>
+    <div className="col-lg-6 offset-md-3 col-lg-8  offset-lg-1">
+    <h3 className="mb-3">Edit Profile</h3>
     <div className="card">
       <div className="card-body">
         <form>
@@ -70,18 +76,18 @@ function ProfileForm(){
           <div className="form-group">
             <label>First Name</label>
             <input
-                name="firstName"
+                name="first_name"
                 className="form-control"
-                value={formData.firstName}
+                value={formData.first_name}
                 onChange={handleChange}
             />
           </div>
           <div className="form-group">
             <label>Last Name</label>
             <input
-                name="lastName"
+                name="last_name"
                 className="form-control"
-                value={formData.lastName}
+                value={formData.last_name}
                 onChange={handleChange}
             />
           </div>
@@ -133,7 +139,7 @@ function ProfileForm(){
               : null}
 
           <button
-              className="btn btn-primary btn-block mt-4"
+              className="btn btn-secondary btn-block mt-4"
               onClick={handleSubmit}
           >
             Save Changes
@@ -141,6 +147,7 @@ function ProfileForm(){
         </form>
       </div>
     </div>
+  </div>
   </div>
    )
 }

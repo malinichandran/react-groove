@@ -1,6 +1,7 @@
-import React, { useState,useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import GrooveApi from "../api/api";
 import UserContext from "../auth/UserContext";
+import VideoContext from "../auth/VideoContext";
 import "./video.css";
 import ListOfPlaylists from "../playlists/ListOfPlaylists";
 import AddPlaylistModal from "../playlists/AddPlaylistModal";
@@ -32,11 +33,12 @@ const VideoDetail = ({ video }) => {
        </p>
     </div>;
   }
-
+ console.log(video)
   const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
   //console.log(typeof video);
   return (
     <div>
+      
       <div className="ui embed">
         <iframe src={videoSrc} allowFullScreen title="Video player" />
       </div>
@@ -44,8 +46,8 @@ const VideoDetail = ({ video }) => {
         <h4 className="ui header">{video.snippet.title}</h4>
         
         
-        <Button variant="light" onClick={handleShow}>
-      <Link to="/playlists"> Add to playlist </Link>
+        <Button variant="secondary" onClick={handleShow}>
+      <Link className="link" to="/playlists"> Add to playlist </Link>
       
       </Button>
       
@@ -64,7 +66,12 @@ const VideoDetail = ({ video }) => {
         </Modal.Footer>
       </Modal> */}
         <p>{video.snippet.description}</p>
+        
       </div>
+      <VideoContext.Provider
+         value={{video: video}}>
+           <PlaylistVideos/>
+      </VideoContext.Provider>
     </div>
   );
 };

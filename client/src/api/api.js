@@ -70,6 +70,13 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
      return res.video;
     }
 
+/** TO delete a user from the database */
+   static async removeProfile(username){
+       
+       let res = await this.request(`users/${username}`, {} , "delete");
+        //return res;
+        console.log(res);
+   }
 
  }
 

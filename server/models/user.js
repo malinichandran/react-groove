@@ -85,8 +85,8 @@ class User {
                 country)
              VALUES ($1, $2, $3, $4, $5, $6, $7)
              RETURNING username,
-                        first_name AS "firstName",
-                        last_name AS "lastName",
+                        first_name ,
+                        last_name,
                         email,
                         profile_pic,
                         country`,

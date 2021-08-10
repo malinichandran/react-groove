@@ -15,13 +15,11 @@ import SearchBar from "../search/SearchBar";
 
 function Homepage() {
     const { currentUser } = useContext(UserContext);
-    console.debug("Homepage", "currentUser=", currentUser);
+ //   console.debug("Homepage", "currentUser=", currentUser);
 
     return (
         <div className="Homepage">
-                 <div >
-                    <SearchBar/>
-                </div>
+                 
             <div className="container text-center">
                 <h1 className="mb-4 font-weight-bold">
                     Groove

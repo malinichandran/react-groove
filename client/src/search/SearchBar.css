@@ -1,5 +1,31 @@
 .search-bar input:focus {
     box-shadow: none;
-    border-color: #ced4da;
-  }
+    border-color: white ;
+    border-width: medium;
+    
+}
+
+form{
+  align-content: center;
+  padding-left: 10em;
   
+}
+  
+input{
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+  
+}
+
+.five.wide.column{
+  padding: 10px;
+  margin: 10px;
+}
+
+.eleven.wide.column{
+  color:white;
+}

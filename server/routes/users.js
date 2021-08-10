@@ -93,12 +93,14 @@ router.get("/", ensureLoggedIn, async function (req, res, next) {
 
  /** DELETE /[username]  =>  { deleted: username }
  *
- * Authorization required: admin or same-user-as-:username
+ * Authorization required: same-user-as-:username
  **/
 
  router.delete("/:username", ensureCorrectUser, async function (req, res, next) {
      try{
+        //console.log("del req params"+req.params);
          await User.remove(req.params.username);
+
          return res.json({ deleted: req.params.username });
      } catch (err) {
          return next(err);

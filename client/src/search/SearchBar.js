@@ -4,6 +4,7 @@ import VideoList from './VideoList';
 import VideoDetail from './VideoDetail';
 import youtube from '../api/Youtube';
 import PlaylistVideos from '../playlists/PlaylistVideos';
+import ListOfPlaylists from "../playlists/ListOfPlaylists"
 
 function Searchbar() {
 const [term, setTerm] = useState();
@@ -61,19 +62,19 @@ function handleVideoSelect(video){
                 <form onSubmit={handleSubmit} className='ui form'>
                     <div className='field'>
                         <label htmlFor="video-search"></label>
-                        <input onChange={handleChange} name='video-search' type="text" placeholder="Search.."/>
+                        <input onChange={handleChange} name='video-search' type="text" placeholder="Search for your favorite videos.."/>
                     </div>
                 </form>
                 <div className='ui container' style={{marginTop: '1em'}}>
      
      <div className='ui grid'>
-         <div className="ui row">
+         <div>
              <div className="eleven wide column">
                  <VideoDetail video={selectedVideo}/>
              </div>
              <div className="five wide column">
                  <VideoList handleVideoSelect={handleVideoSelect} videos={videos}/>
-                 
+                 {/* <ListOfPlaylists video={selectedVideo}/> */}
              </div>
          </div>
      </div>

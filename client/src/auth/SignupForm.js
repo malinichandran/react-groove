@@ -10,11 +10,11 @@ import Alert from "../common/Alert";
      const history = useHistory();
      const [formData, setFormData] = useState({
          username: "",
-         firstName: "",
-         lastName: "",
+         first_name: "",
+         last_name: "",
          email: "",
          password: "",
-         profilePic: "",
+         profile_pic: "",
          country: ""
      });
      const [formErrors, setFormErrors] = useState([]);
@@ -62,18 +62,18 @@ import Alert from "../common/Alert";
                 <div className="form-group">
                   <label>First name</label>
                   <input
-                      name="firstName"
+                      name="first_name"
                       className="form-control"
-                      value={formData.firstName}
+                      value={formData.first_name}
                       onChange={handleChange}
                   />
                 </div>
                 <div className="form-group">
                   <label>Last name</label>
                   <input
-                      name="lastName"
+                      name="last_name"
                       className="form-control"
-                      value={formData.lastName}
+                      value={formData.last_name}
                       onChange={handleChange}
                   />
                 </div>
@@ -102,9 +102,9 @@ import Alert from "../common/Alert";
                 <div className="form-group">
                   <label>Profile Picture</label>
                   <input
-                      name="profilePic"
+                      name="profile_pic"
                       className="form-control"
-                      value={formData.profilePic}
+                      value={formData.profile_pic}
                       onChange={handleChange}
                   />
                 </div>

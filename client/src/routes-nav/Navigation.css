@@ -2,19 +2,27 @@
     color: black;
     
   }
-  .nav-Link{
-      color:gray;
+  .navbar-nav .nav-item{
+    color:orange;
+    font-size: bold;
+      font-weight: bold;
+      padding: 1rem;
+      font-family: sans-serif;
+  }
+  .nav-link{
+    
+      color:orange;
       font-size: bold;
       font-weight: bold;
       padding: 1rem;
   }
-  .nav-link.active {
+  .nav-link .active {
     font-weight: bold;
-    color: rgb(160, 150, 150);
+    color: gray;
   }
 
   .navbar-brand{
-      color: grey;
+      color:orange;
       font-weight: bold;
       padding: 1rem;
   }

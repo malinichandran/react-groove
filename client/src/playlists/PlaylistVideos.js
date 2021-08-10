@@ -4,10 +4,12 @@ import UserContext from "../auth/UserContext";
 import GrooveApi from "../api/api";
 import Alert from "../common/Alert";
 import ListOfPlaylists from "./ListOfPlaylists";
-import ListOfVideos from "./ListOfVideos";
+import VideoContext from "../auth/VideoContext";
 
-function PlaylistVideos({video}){
-    console.log(video);
+
+function PlaylistVideos(){
+    const { video } = useContext(VideoContext);
+   console.log(video.id.videoId);
   const [saveConfirmed, setSaveConfirmed] = useState(false);
      const [errors, setErrors] = useState([]);
 //    const {currentUser} = useContext(UserContext);
@@ -52,7 +54,7 @@ function PlaylistVideos({video}){
                   : null}
                 
        </div>
-       <ListOfVideos/> 
+       
        </>
    )
 }

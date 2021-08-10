@@ -6,8 +6,8 @@ import ListOfPlaylists from "../playlists/ListOfPlaylists";
 import UserContext from "../auth/UserContext";
 
 const VideoItem = ({video , handleVideoSelect}) => {
-    console.log(video.id.videoId)
-
+   
+   console.log('suresh1'+video.id.videoId)
     return (
         <>
         <div onClick={ () => handleVideoSelect(video)} className=' video-item item'>
@@ -17,7 +17,8 @@ const VideoItem = ({video , handleVideoSelect}) => {
             </div>
             
         </div>
-        <ListOfPlaylists videoId={video.id.videoId}/>
+        
+       
        </>
     )
 };

@@ -47,7 +47,9 @@ const { UnauthorizedError } = require("../expressError");
  */
  function ensureCorrectUser(req, res, next){
      try{
+    
          const user = res.locals.user;
+         
          if (!user && (user.username === req.params.username)) {
              throw new UnauthorizedError();
          }

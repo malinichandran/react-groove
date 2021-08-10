@@ -30,9 +30,15 @@ import Searchbar from "../search/SearchBar";
                      Playlists
                     </NavLink>
                 </li>
-                <li className="nav-item mr-4">
+                {/* <li className="nav-item mr-4">
                     <NavLink className="nav-link" to="/community">
                      Community
+                    </NavLink>
+                </li> */}
+                <li className="nav-item mr-4">
+                    <NavLink className="nav-link" to="/search">
+                     Search
+                     
                     </NavLink>
                 </li>
                 <li className="nav-item mr-4">
@@ -49,12 +55,12 @@ import Searchbar from "../search/SearchBar";
         return(
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item mr-4">
-                    <NavLink className="nav-Link" to="/login">
+                    <NavLink className="nav-link" to="/login">
                         Login
                     </NavLink>
                 </li>
                 <li className="nav-item mr-4">
-                    <NavLink className="nav-Link" to="/signup">
+                    <NavLink className="nav-link" to="/signup">
                         Sign Up
                     </NavLink>
                 </li>

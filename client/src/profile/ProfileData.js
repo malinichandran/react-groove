@@ -1,6 +1,8 @@
 import React from "react";
-import {Card, Button} from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
+import "./ProfileData.css";
 
 function ProfileData({profile}){
   console.log(profile);
@@ -17,7 +19,8 @@ function ProfileData({profile}){
       <p>email: {profile.email}</p>
       <p>Country of living: {profile.country}</p>
     </Card.Text>
-    <Button variant="secondary"><Link to="/editprofile">Edit Profile</Link></Button>
+    <Button variant="secondary"><Link className="link" to="/editprofile">Edit Profile</Link></Button>
+    <Button variant="danger"><Link className="link" to="/deleteprofile">Delete Profile</Link></Button>
   </Card.Body>
 </Card>
       </div>
