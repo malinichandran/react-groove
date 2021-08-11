@@ -11,6 +11,7 @@ import SearchBar from "../search/SearchBar";
 import ProfileForm from "../profile/ProfileForm";
 import PlaylistVideos from "../playlists/PlaylistVideos";
 import DeleteProfilePage from "../profile/DeleteProfilePage";
+import AddPlaylist from "../playlists/AddPlaylist";
 /** Site-wide routes
  * 
  * parts of site should only be visitable when logged in. Those routes are 
@@ -21,12 +22,6 @@ import DeleteProfilePage from "../profile/DeleteProfilePage";
 
  function Routes({ login, signup, profile }){
      
-    // console.debug(
-    //     "Routes",
-    //     `login=${typeof login}`,
-    //     `signup=${typeof signup}`,
-    
-    // );
     
 
    
@@ -60,7 +55,9 @@ import DeleteProfilePage from "../profile/DeleteProfilePage";
                 <PrivateRoute exact path="/playlists/:playlist_name">
                     <PlaylistVideos/>
                 </PrivateRoute>
-
+                <PrivateRoute exact path="/addplaylist">
+                    <AddPlaylist/>
+                </PrivateRoute>
                 <Redirect to="/"/>
             </Switch>
         </div>

@@ -5,6 +5,7 @@ import VideoDetail from './VideoDetail';
 import youtube from '../api/Youtube';
 import PlaylistVideos from '../playlists/PlaylistVideos';
 import ListOfPlaylists from "../playlists/ListOfPlaylists"
+import VideoContext from "../auth/VideoContext";
 
 function Searchbar() {
 const [term, setTerm] = useState();
@@ -69,13 +70,16 @@ function handleVideoSelect(video){
      
      <div className='ui grid'>
          <div>
+             <VideoContext.Provider value={{selectedVideo}}>
              <div className="eleven wide column">
                  <VideoDetail video={selectedVideo}/>
              </div>
              <div className="five wide column">
                  <VideoList handleVideoSelect={handleVideoSelect} videos={videos}/>
                  {/* <ListOfPlaylists video={selectedVideo}/> */}
+                 <PlaylistVideos/>
              </div>
+             </VideoContext.Provider>
          </div>
      </div>
  </div>

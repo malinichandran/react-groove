@@ -7,7 +7,7 @@ import UserContext from "../auth/UserContext";
 
 const VideoItem = ({video , handleVideoSelect}) => {
    
-   console.log('suresh1'+video.id.videoId)
+  
     return (
         <>
         <div onClick={ () => handleVideoSelect(video)} className=' video-item item'>

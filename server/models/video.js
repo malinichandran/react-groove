@@ -27,12 +27,13 @@ class Video {
       if(videoDuplicateCheck.rows[0])
          return;
         
-      const playlist_id = await db.query(
+      const playlistRes = await db.query(
           `SELECT playlist_id FROM playlists
            WHERE playlist_name = $1 
            AND username = $2`,[playlist_name, username]
       );    
-
+    const playlist_id = playlistRes.rows[0].id;
+    
       const result = await db.query(
             `INSERT INTO videos 
              api_video_id, playlist_id

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import GrooveApi from "../api/api";
 import UserContext from "../auth/UserContext";
 import VideoContext from "../auth/VideoContext";
-import "./video.css";
+import "../search/video.css";
 import ListOfPlaylists from "../playlists/ListOfPlaylists";
 import AddPlaylistModal from "../playlists/AddPlaylistModal";
 //import "../playlists/AddPlaylistModal.css";
@@ -11,7 +11,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import PlaylistVideos from "../playlists/PlaylistVideos";
 
-const VideoDetail = ({ video }) => {
+const PlayingPlaylistVideo = ({ video }) => {
   const { currentUser } = useContext(UserContext);
   
   // const [isOpen, setIsOpen] = useState(false);
@@ -31,10 +31,10 @@ const VideoDetail = ({ video }) => {
       
 
        </p>
-    </div>
+    </div>;
   }
  console.log(video)
-  const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
+  const videoSrc = `https://www.youtube.com/embed/${video.id}`;
   //console.log(typeof video);
   return (
     <div>
@@ -46,31 +46,16 @@ const VideoDetail = ({ video }) => {
         <h4 className="ui header">{video.snippet.title}</h4>
         
         
-        <Button variant="secondary" onClick={handleShow}>
-      <Link className="link" to="/playlists"> Add to playlist </Link>
-      
-      </Button>
-      
-      {/* <Modal show={show} onHide={handleClose}>
-        <Modal.Header>
-          <Modal.Title>{currentUser.firstName}'s Playlists</Modal.Title>
-        </Modal.Header>
-        <Modal.Body><ListOfPlaylists/></Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Create New Playlist
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
+       
         <p>{video.snippet.description}</p>
         
       </div>
-      
+      <VideoContext.Provider
+         value={{video: video}}>
+           <PlaylistVideos/>
+      </VideoContext.Provider>
     </div>
   );
 };
 
-export default VideoDetail;
+export default PlayingPlaylistVideo;

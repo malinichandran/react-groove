@@ -61,12 +61,13 @@ class Playlist {
      * 
      */
     static async getVideos(username, playlist_name){
-        let playlist_id =  await db.query(
+        let result =  await db.query(
                         `SELECT id FROM playlists 
                          WHERE username = $1
                          AND playlist_name = $2`,
                          [username, playlist_name]
         );
+        let playlist_id = result.rows[0].id;
        const videoRes = await db.query(
               `SELECT api_video_id
                FROM videos
