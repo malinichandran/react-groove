@@ -1,0 +1,26 @@
+
+h3{
+    color:orange;
+}
+
+.form-group{
+    width: 100px;
+    height: 70px;
+}
+.form-control{
+    background-color:wheat;
+}
+.card{
+    background-color: gray;
+    opacity: 0.8;
+}
+
+.btn{
+    background-color: orange;
+}
+
+.form{
+    padding-left: 8rem;
+    padding-right:7rem;
+
+}

@@ -23,7 +23,7 @@ class Playlist {
          );
 
          if(playlistDuplicateCheck.rows[0])
-            throw BadRequestError(`Duplicate playlist: ${playlist_name}. Choose another name.`);
+            throw new BadRequestError(`Duplicate playlist: ${playlist_name}. Choose another name.`);
 
             const result = await db.query(
                     `INSERT INTO playlists 
@@ -41,6 +41,7 @@ class Playlist {
     /** Find all playlists of a user */
 
     static async findAll(username){
+       
         const playlistsRes = await db.query(
             `SELECT username, 
              playlist_name, 
@@ -50,11 +51,12 @@ class Playlist {
              WHERE username = $1`,
              [username] 
         );
-
-        const playlists = playlistsRes.rows;
         
+        const playlists = playlistsRes.rows;
+       
         return playlists;
     }
+    
     
     /** Given a playlist_name, return videos in that playlist
      * 
@@ -76,7 +78,7 @@ class Playlist {
        );
 
           const videos = videoRes.rows;
-        console.log(videos);
+       //console.log(videos);
           return videos;
            }
     
@@ -134,6 +136,23 @@ class Playlist {
 
          if(!playlist) throw new NotFoundError(`No Playlist: ${playlist_name}`);
      }
+
+     /** Get data about a playlist when given a playlist_name */
+
+    static async getPlaylistData(playlist_name){
+        console.log(playlist_name)
+        let result = await db.query(
+            `SELECT playlist_name, description, PUBLIC_PRIVATE_FLAG
+             FROM playlists
+            WHERE playlist_name = $1`,
+            [playlist_name]
+        );
+        console.log(result);
+        const playlistData = result.rows[0];
+        console.log("playlistData", playlistData);
+        return playlistData;
+
+    }
 }
 
 module.exports = Playlist;

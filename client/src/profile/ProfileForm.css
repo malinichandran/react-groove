@@ -1,3 +1,20 @@
 h3{
     color:orange;
 }
+
+.form-group{
+    width: 40rem;
+}
+
+.card{
+    background-color: lightgrey;
+    opacity: 0.8;
+}
+form{
+   padding-left: 9rem;
+   opacity: unset;
+}
+
+.btn{
+    background-color: orange;
+}

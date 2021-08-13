@@ -1,74 +1,72 @@
-import React from "react";
-import {useState, useContext} from "react";
+import React, { useState, useContext ,useEffect} from "react";
 import UserContext from "../auth/UserContext";
-import Form  from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Alert from "../common/Alert";
-import "./AddPlaylist.css";
 import GrooveApi from "../api/api";
-import { useHistory } from "react-router-dom";
+import Alert from "../common/Alert";
+import { useHistory, useParams } from "react-router-dom";
 
-function AddPlaylist(){
+function EditPlaylist(){
     const history = useHistory();
-    const {currentUser} = useContext(UserContext);
+    const {playlist_name} = useParams();
+    console.log(playlist_name);
     const [playlist, setPlaylist] = useState([]);
     const [checked, setChecked] = useState(true);
-    const [saveConfirmed, setSaveConfirmed] = useState(false);
-    const [formData, setFormData] = useState({
-        username: currentUser.username,
-        playlist_name: "",
-        description: "",
-        PUBLIC_PRIVATE_FLAG: checked
-    })
-    const [formErrors, setFormErrors] = useState([]);
     
-    console.debug("playlistform",
-    "formData=",formData,   
-    "formErrors=", formErrors);
-
-   // const toggleChecked = () => setChecked(value => !value);
+//     useEffect(function callPlaylistData(){
+//         playlistData(playlist_name);
+//     },[]);
+//     async function playlistData(playlist_name){
+//      try{
+//  let result = await GrooveApi.getPlaylistData(playlist_name);
+//  console.log(result);
+//      }catch(errs){
+//         console.log(errs);
+//      }
+     
+//     }
+    
+        const [formData, setFormData] = useState({
+            playlist_name: "",
+            description: "",
+            PUBLIC_PRIVATE_FLAG: checked
+        });
+    const [formErrors, setFormErrors] = useState([]);
+    const [saveConfirmed, setSaveConfirmed] = useState(false);
 
     async function handleSubmit(evt){
         evt.preventDefault();
         let playlistData = {
-            username :currentUser.username,
             playlist_name: formData.playlist_name,
             description: formData.description,
             PUBLIC_PRIVATE_FLAG: checked
         }
-        console.log(playlistData)
-        let newPlaylist;
+        let updatedPlaylist;
         try{
-            newPlaylist = await GrooveApi.addPlaylist(playlistData);
-            
+          updatedPlaylist = await GrooveApi.updatePlaylist(playlist_name, playlistData);
         }catch(errors){
             setFormErrors(errors);
-            return
+            return;
         }
         setFormData(f=>({...f}));
         setFormErrors([]);
         setSaveConfirmed(true);
-        setPlaylist(newPlaylist);
+        setPlaylist(updatedPlaylist);
         history.push("/playlists");
+        
     }
 
     function handleChange(evt){
-        const { name, value } = evt.target;
+        const {name, value} = evt.target;
         setFormData(data => ({...data, [name]:value}));
         setFormErrors([]);
     }
 
-
-
     function onValueChange(e){
-        console.log(e.target.value)
         setChecked(e.target.value)
     }
-   
-return(
-    <div>
+    return(
+        <div>
         <div className="col-lg-6 offset-md-3 col-lg-8 offset-lg-1">
-            <h3 className="mb-3">Add a new playlist</h3>
+            <h3 className="mb-3">Edit playlist</h3>
             <div className="card">
                 <div className="card-body">
                     <form>
@@ -137,7 +135,7 @@ return(
             
         </div>
     </div>
-)
+    )
 }
 
-export default AddPlaylist;
+export default EditPlaylist;

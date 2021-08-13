@@ -1,3 +1,11 @@
 .link {
   color:white;
 }
+
+.cardstyle{
+  opacity:0.9;
+  width: 28rem;
+  padding:10px;
+  margin-left: 150px ;
+  background-color: whitesmoke;
+}

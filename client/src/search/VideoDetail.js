@@ -12,15 +12,12 @@ import Button from "react-bootstrap/Button";
 import PlaylistVideos from "../playlists/PlaylistVideos";
 
 const VideoDetail = ({ video }) => {
-  const { currentUser } = useContext(UserContext);
-  
-  // const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(false);
+    const [errors, setErrors] = useState([]);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  
+  const { currentUser } = useContext(UserContext);
   
 
   if (!video) {
@@ -46,25 +43,34 @@ const VideoDetail = ({ video }) => {
         <h4 className="ui header">{video.snippet.title}</h4>
         
         
-        <Button variant="secondary" onClick={handleShow}>
-      <Link className="link" to="/playlists"> Add to playlist </Link>
+        {/* <Button variant="secondary" >
+      {/* <Link className="link" to="/playlists"> Add to playlist </Link> */}
       
-      </Button>
+      {/* </Button> */} 
+      <Button variant="warning" onClick={handleShow}>
+         Add to Playlist
+        </Button>
+  
+        <Modal
+          show={show}
+          onHide={handleClose}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header>
+            <Modal.Title>Choose a playlist</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+           <ListOfPlaylists videoId={video.id.videoId}/>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+           
+          </Modal.Footer>
+        </Modal>
       
-      {/* <Modal show={show} onHide={handleClose}>
-        <Modal.Header>
-          <Modal.Title>{currentUser.firstName}'s Playlists</Modal.Title>
-        </Modal.Header>
-        <Modal.Body><ListOfPlaylists/></Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Create New Playlist
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
         <p>{video.snippet.description}</p>
         
       </div>

@@ -1,5 +1,6 @@
 import React, {useState , useContext, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import GrooveApi from "../api/api";
 import PlayingPlaylistVideo from "./PlayingPlaylistVideo";
@@ -8,13 +9,20 @@ import ListOfPlaylists from "./ListOfPlaylists";
 import VideoContext from "../auth/VideoContext";
 import VideoItem from "../search/VideoItem";
 import axios from "axios";
-import Youtube from "../api/VideosApi";;
+import Youtube from "../api/VideosApi";
+import {Button, Modal} from "react-bootstrap";
+
+
 
 
 function PlaylistVideos(){
+    const location = useLocation();
+    const video = location.state?.video;
+    const history = useHistory();
     const [selectedVideo, setSelectedVideo] = useState(null);
-    // const { video } = useContext(VideoContext);
-//    console.log(video.id.videoId);
+   
+    console.log(video);
+    const [show, setShow] = useState(false);
   const [saveConfirmed, setSaveConfirmed] = useState(false);
      const [errors, setErrors] = useState([]);
    const {currentUser} = useContext(UserContext);
@@ -22,28 +30,37 @@ function PlaylistVideos(){
      console.log(playlist_name);
     console.log(currentUser.username)
     let username = currentUser.username;
-//     let addedVideo;
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    let addedVideo;
 
    let videosGot;
 
 const [videoIds, setVideoIds] = useState([]);
 const [renderedVideos, setRenderedVideos] = useState([]);
-//     async function addVideo(video){
-//         let videoData = {
-//             api_video_id: video.id.videoId,
+    async function addVideo(video){
+        let videoData = {
+            api_video_id: video,
+            website: 'Youtube'
             
-//         }
-//         try{
-//             console.log("addvideo called")
-//             addedVideo = await GrooveApi.addVideo(playlist_name, username, videoData )
+        }
+        console.log(videoData)
+        try{
+            console.log("addvideo called")
+            addedVideo = await GrooveApi.addVideo(playlist_name, username, videoData )
 
-//         }catch(errors) {
-//          setErrors(errors);
-//          return
-//         }
-//         setErrors([]);
-//         setSaveConfirmed(true);
-//     }
+        }catch(errors) {
+         setErrors(errors);
+         return
+        }
+        setErrors([]);
+        setSaveConfirmed(true);
+        history.push(`/playlists/${playlist_name}`)
+    }
+
+    useEffect(function callAddVideo(){
+        addVideo(video);
+    },[])
     //addVideo()
     useEffect(function callGetVideoIds(){
         getVideoIds(playlist_name);
@@ -106,8 +123,17 @@ const displayVideos =  renderedVideos.map((video) => {
     </div>
 )});
 
+let deleteAction
+console.log(playlist_name);
 
-
+async function deletePlaylist(){
+    try{
+        deleteAction = await GrooveApi.deletePlaylist(playlist_name);
+        history.push("/playlists");
+    }catch(errors){
+        setErrors(errors);
+    }
+}
    return(
       <>
       {/* <div>
@@ -126,6 +152,30 @@ const displayVideos =  renderedVideos.map((video) => {
                  <PlayingPlaylistVideo video={selectedVideo}/>
              </div>
        <div >{displayVideos}</div>;
+       <button className="btn btn-secondary"><Link to={`/editplaylist/${playlist_name}`}>Edit Playlist</Link></button>
+       <Button variant="warning" onClick={handleShow}>
+         Delete playlist
+        </Button>
+  
+        <Modal
+          show={show}
+          onHide={handleClose}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header>
+            <Modal.Title>Warning</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+           Proceeding with this action will delete all your videos in this playlist. Do you wish to proceed?
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="danger" onClick={deletePlaylist}>Yes, delete this playlist</Button>
+          </Modal.Footer>
+        </Modal>
        </>
    )
 }

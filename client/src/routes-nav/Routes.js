@@ -12,6 +12,8 @@ import ProfileForm from "../profile/ProfileForm";
 import PlaylistVideos from "../playlists/PlaylistVideos";
 import DeleteProfilePage from "../profile/DeleteProfilePage";
 import AddPlaylist from "../playlists/AddPlaylist";
+import EditPlaylist from "../playlists/EditPlaylist";
+
 /** Site-wide routes
  * 
  * parts of site should only be visitable when logged in. Those routes are 
@@ -58,6 +60,10 @@ import AddPlaylist from "../playlists/AddPlaylist";
                 <PrivateRoute exact path="/addplaylist">
                     <AddPlaylist/>
                 </PrivateRoute>
+                <PrivateRoute exact path="/editplaylist/:playlist_name">
+                    <EditPlaylist/>
+                </PrivateRoute>
+                
                 <Redirect to="/"/>
             </Switch>
         </div>

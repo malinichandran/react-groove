@@ -38,14 +38,17 @@ const router = new express.Router();
      }
  });
 
+ 
  /** GET all playlists of a  /[username] =>
   * { playlists: [ { username, playlist_name, description, PUBLIC_PRIVATE_KEY }, ...]}
   */
 
   router.get("/:username", ensureCorrectUser, async function(req, res, next) {
       try{
-          const playlists = await Playlist.findAll(req.params.username);
-          return res.json({ playlists });
+       
+        const playlists = await Playlist.findAll(req.params.username);
+     
+        return res.json({ playlists });
       } catch(err){
            return next(err);
       }
@@ -66,6 +69,7 @@ const router = new express.Router();
       }
   });
 
+
   /** PATCH  /[playlist_name] 
    * {fld1,fld2, ...} => {playlist}
    * 
@@ -75,6 +79,8 @@ const router = new express.Router();
    * Returns { username, playlist_name,description, PUBLIC_PRIVATE_FLAG }
    *    
   */
+
+
  router.patch("/:playlist_name", ensureCorrectUser, async function(req, res, next){
      try{
        const validator =jsonschema.validate(req.body, playlistUpdateSchema);
@@ -82,7 +88,7 @@ const router = new express.Router();
            const errs = validator.errors.map(e => e.stack);
            throw new BadRequestError(errs);
        }
-       const playlist = await Playlist.update(req.params.username, req.body);
+       const playlist = await Playlist.update(req.params.playlist_name, req.body);
        return res.json({ playlist });
      } catch(err) {
         return next(err);
@@ -99,6 +105,18 @@ const router = new express.Router();
      }
  });
 
+ /**GET data of a playlist given a playlist_name */
+
+ router.get("/:playlist_name", ensureCorrectUser, async function(req, res, next) {
+    try{
+       const playlist = await Playlist.getPlaylistData(req.params.playlist_name);
+           
+       return res.json({playlist});
+    }catch(err){
+        return next(err);
+    }
+})
+
  /**Add a video to a playlist and update the video database
   * 
   *  POST /[playlist_id]/ {video} => {video}
@@ -108,14 +126,14 @@ const router = new express.Router();
  * returns {api_video_id, playlist_id, website }
  */
 
- router.post("/:playlist_name", ensureCorrectUser, async function( req, res, next) {
+ router.post("/:username/:playlist_name", ensureCorrectUser, async function( req, res, next) {
      try{
        const validator = jsonschema.validate(req.body, videoNewSchema);
        if (!validator.valid) {
         const errs = validator.errors.map(e => e.stack);
         throw new BadRequestError(errs);
       }
-      const video = await Video.create(req.params.playlist_name, username, req.body);
+      const video = await Video.create(req.params.username, req.params.playlist_name, req.body);
       return res.status(201).json({ video });
      } catch(err){
          return next(err);
@@ -132,4 +150,6 @@ const router = new express.Router();
          return next(err);
      }
  })
+
+ 
  module.exports = router;

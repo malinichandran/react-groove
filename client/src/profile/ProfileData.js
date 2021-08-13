@@ -8,10 +8,10 @@ function ProfileData({profile}){
   console.log(profile);
 
   return(
-      <div>
-         <Card style={{ width: '28rem', padding:'10px', margin: '100px' }}>
+      <div >
+         <Card  className="cardstyle">
   <Card.Img variant="top" src={profile.profile_pic} />
-  <Card.Body>
+  <Card.Body variant="top">
     <Card.Title>User Profile</Card.Title>
     <Card.Text>
       <p>First Name: {profile.firstName}</p>
