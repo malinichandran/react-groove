@@ -42,7 +42,7 @@ function LoginForm( {login}) {
 
     return(
         <div className="LoginForm">
-            <div className="form col-lg-6 offset-md-3 col-lg-8 offset-lg-1">
+            <div className="col-lg-6 offset-md-3 col-lg-8 offset-lg-1">
                 <h3 className="mb-3">Log In</h3>
 
           <div className="card">

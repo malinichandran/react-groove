@@ -10,20 +10,21 @@ function EditPlaylist(){
     console.log(playlist_name);
     const [playlist, setPlaylist] = useState([]);
     const [checked, setChecked] = useState(true);
-    
-//     useEffect(function callPlaylistData(){
-//         playlistData(playlist_name);
-//     },[]);
-//     async function playlistData(playlist_name){
-//      try{
-//  let result = await GrooveApi.getPlaylistData(playlist_name);
-//  console.log(result);
-//      }catch(errs){
-//         console.log(errs);
-//      }
+    let result;
+    useEffect(function callPlaylistData(){
+        playlistData(playlist_name);
+    },[]);
+    async function playlistData(playlist_name){
+     try{
+ result = await GrooveApi.getPlaylistData(playlist_name);
+console.log(result)
+
+     }catch(errs){
+        console.log(errs);
+     }
      
-//     }
-    
+    }
+    console.log(result);
         const [formData, setFormData] = useState({
             playlist_name: "",
             description: "",
@@ -61,7 +62,10 @@ function EditPlaylist(){
     }
 
     function onValueChange(e){
-        setChecked(e.target.value)
+        console.log(e.target.value)
+        setChecked(e.target.value === !e.target.value)
+
+        console.log(checked)
     }
     return(
         <div>
@@ -89,28 +93,13 @@ function EditPlaylist(){
                         <div className="form-group">
                             <div className="form-check">
                          <input className="form-check-input" 
-                                    type="radio"
+                                    type="checkbox"
                                     name="PUBLIC_PRIVATE_FLAG"
-                                     value="true"
-                                     checked={checked==="true"}
-                                     onChange={onValueChange}
+                                    value={formData.PUBLIC_PRIVATE_FLAG}
+                                    onChange={onValueChange}
                                      />
                         <label className="form-check-label" >
-                              Public
-                        </label>
-                     </div>
-                        </div>
-                        <div className="form-group">
-                            <div className="form-check">
-                         <input className="form-check-input" 
-                                    type="radio"
-                                    name="PUBLIC_PRIVATE_FLAG"
-                                     value="false"
-                                     checked={checked==="false"}
-                                     onChange={onValueChange}
-                                     />
-                        <label className="form-check-label" >
-                              Private
+                              Set playlist as private
                         </label>
                      </div>
                         </div>

@@ -105,17 +105,7 @@ const router = new express.Router();
      }
  });
 
- /**GET data of a playlist given a playlist_name */
-
- router.get("/:playlist_name", ensureCorrectUser, async function(req, res, next) {
-    try{
-       const playlist = await Playlist.getPlaylistData(req.params.playlist_name);
-           
-       return res.json({playlist});
-    }catch(err){
-        return next(err);
-    }
-})
+ 
 
  /**Add a video to a playlist and update the video database
   * 
@@ -151,5 +141,16 @@ const router = new express.Router();
      }
  })
 
- 
+ /**GET data of a playlist given a playlist_name */
+
+ router.get("/:playlist_name", ensureCorrectUser, async function(req, res, next) {
+    try{
+        console.log(playlist_name);
+       const playlist = await Playlist.getPlaylistData(req.params.playlist_name);
+           console.log(playlist);
+       return res.json({playlist});
+    }catch(err){
+        return next(err);
+    }
+})
  module.exports = router;

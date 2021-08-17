@@ -11,8 +11,8 @@ import VideoItem from "../search/VideoItem";
 import axios from "axios";
 import Youtube from "../api/VideosApi";
 import {Button, Modal} from "react-bootstrap";
-
-
+import { FaTrashAlt } from "react-icons/fa";
+import "./PlaylistVideos.css";
 
 
 function PlaylistVideos(){
@@ -38,6 +38,10 @@ function PlaylistVideos(){
 
 const [videoIds, setVideoIds] = useState([]);
 const [renderedVideos, setRenderedVideos] = useState([]);
+useEffect(function callAddVideo(){
+    addVideo(video);
+},[])
+
     async function addVideo(video){
         let videoData = {
             api_video_id: video,
@@ -56,15 +60,15 @@ const [renderedVideos, setRenderedVideos] = useState([]);
         setErrors([]);
         setSaveConfirmed(true);
         history.push(`/playlists/${playlist_name}`)
+        window.location.reload();
+        
     }
 
-    useEffect(function callAddVideo(){
-        addVideo(video);
-    },[])
+   
     //addVideo()
     useEffect(function callGetVideoIds(){
         getVideoIds(playlist_name);
-      }, [playlist_name]);
+      }, []);
    
 
 async function getVideoIds(playlist_name){
@@ -119,6 +123,7 @@ const displayVideos =  renderedVideos.map((video) => {
     <div>
         
     <VideoItem className="video-list" key={video.data.items[0].id.videoId} video={video.data.items[0]} handleVideoSelect={handleVideoSelect}/>
+     <p className="trash-align"><Link><FaTrashAlt className="trash"/></Link></p>
    
     </div>
 )});
@@ -148,6 +153,7 @@ async function deletePlaylist(){
                   : null}
                 
        </div> */}
+       <h3>{`${playlist_name}`}</h3>
        <div className="eleven wide column">
                  <PlayingPlaylistVideo video={selectedVideo}/>
              </div>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import"./Homepage.css";
 import UserContext from "../auth/UserContext";
 import SearchBar from "../search/SearchBar";
+import Searchbar from "../search/SearchBar";
 
 /*** Homepage of site 
  * 

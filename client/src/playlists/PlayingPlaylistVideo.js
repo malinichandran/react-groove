@@ -50,10 +50,8 @@ const PlayingPlaylistVideo = ({ video }) => {
         <p>{video.snippet.description}</p>
         
       </div>
-      <VideoContext.Provider
-         value={{video: video}}>
-           <PlaylistVideos/>
-      </VideoContext.Provider>
+     
+     
     </div>
   );
 };

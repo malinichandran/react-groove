@@ -28,6 +28,23 @@ function AddPlaylist(){
 
    // const toggleChecked = () => setChecked(value => !value);
 
+   
+
+    function handleChange(evt){
+        const { name, value } = evt.target;
+        setFormData(data => ({...data, [name]:value}));
+        setFormErrors([]);
+    }
+
+
+
+    function checkValueChange(e){
+        console.log(e.target.value)
+        setChecked(e.target.value === !e.target.value)
+
+        console.log(checked)
+    }
+
     async function handleSubmit(evt){
         evt.preventDefault();
         let playlistData = {
@@ -50,19 +67,6 @@ function AddPlaylist(){
         setSaveConfirmed(true);
         setPlaylist(newPlaylist);
         history.push("/playlists");
-    }
-
-    function handleChange(evt){
-        const { name, value } = evt.target;
-        setFormData(data => ({...data, [name]:value}));
-        setFormErrors([]);
-    }
-
-
-
-    function onValueChange(e){
-        console.log(e.target.value)
-        setChecked(e.target.value)
     }
    
 return(
@@ -88,7 +92,7 @@ return(
                                value={formData.description}
                                onChange={handleChange}/>
                         </div>
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <div className="form-check">
                          <input className="form-check-input" 
                                     type="radio"
@@ -99,20 +103,19 @@ return(
                                      />
                         <label className="form-check-label" >
                               Public
-                        </label>
+                        </label> 
                      </div>
-                        </div>
+</div>*/}
                         <div className="form-group">
                             <div className="form-check">
                          <input className="form-check-input" 
-                                    type="radio"
+                                    type="checkbox"
                                     name="PUBLIC_PRIVATE_FLAG"
-                                     value="false"
-                                     checked={checked==="false"}
-                                     onChange={onValueChange}
+                                    value="true"
+                                    onChange={checkValueChange}
                                      />
                         <label className="form-check-label" >
-                              Private
+                              Set playlist as private
                         </label>
                      </div>
                         </div>

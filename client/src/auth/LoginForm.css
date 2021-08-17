@@ -1,9 +1,11 @@
 h3{
     color:orange;
 }
-
+.card-body{
+    width:30rem;
+}
 .form-group{
-    width: 200px;
+    width: 25rem;
     height: 70px;
 }
 .form-control{
@@ -19,7 +21,11 @@ h3{
 }
 
 .form{
-    padding-left: 5rem;
+    padding-left: 1rem;
     padding-right:5rem;
 
+}
+
+.card-body{
+    width:30rem;
 }
