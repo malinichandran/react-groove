@@ -50,20 +50,23 @@ class Video {
   }
   
   /** Delete a video from a playlist */
-  static async remove(video_id, playlist_name, username){
-    const playlist_id = await db.query(
-        `SELECT playlist_id FROM playlists
-         WHERE playlist_name = $1 
-         AND username = $2`,[playlist_name, username]
+  static async remove( username, playlist_name, videoId){
+    const playlistRes = await db.query(
+        `SELECT id FROM playlists
+         WHERE username = $1 
+         AND playlist_name = $2`,[username, playlist_name]
     );    
+    let playlist_id = playlistRes.rows[0].id;
+    console.log(videoId);
+
       const result = await db.query(
         `DELETE FROM videos 
-         WHERE playlist_id = $1 AND api_video_id =$2
-         RETURNING playlist_id`,[playlist_id, video_id]
+         WHERE api_video_id = $1 AND playlist_id =$2
+         RETURNING playlist_id`,[videoId, playlist_id]
       );
       const video = result.rows[0];
-
-      if(!video) throw new NotFoundError(`No Video Found:`)
+      console.log(video);
+      if(!result) throw new NotFoundError(`No Video Found:`)
   }
 }
 

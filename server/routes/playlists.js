@@ -132,10 +132,10 @@ const router = new express.Router();
 
  /** DELETE video from a playlist. */
 
- router.delete("/:playlist_name/:username/:video_id", ensureCorrectUser, async function( req, res, next) {
+ router.delete("/:username/:playlist_name/:videoId", ensureCorrectUser, async function( req, res, next) {
      try{
-        await Video.remove(req.params.video_id, req.params.playlist_name, req.params.username);
-        return res.json({ deleted: req.params.video_id})
+        await Video.remove(req.params.username, req.params.playlist_name, req.params.videoId );
+        return res.json({ deleted: req.params.videoId})
      } catch(err){
          return next(err);
      }

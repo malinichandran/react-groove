@@ -103,8 +103,15 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
       console.log(res.playlist);
   }
 
+  /**Delete a playlist */
   static async deletePlaylist(playlist_name){
       let res =  await this.request(`playlists/${playlist_name}`, {}, "delete");
+      return res;
+  }
+
+  /**Delete a video from a playlist */
+  static async removeVideo( username, playlist_name, videoId){
+      let res = await this.request(`playlists/${username}/${playlist_name}/${videoId}`,{}, "delete");
       return res;
   }
  }

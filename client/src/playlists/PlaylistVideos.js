@@ -20,7 +20,7 @@ function PlaylistVideos(){
     const video = location.state?.video;
     const history = useHistory();
     const [selectedVideo, setSelectedVideo] = useState(null);
-   
+   let videoId;
     console.log(video);
     const [show, setShow] = useState(false);
   const [saveConfirmed, setSaveConfirmed] = useState(false);
@@ -118,12 +118,25 @@ useEffect(function callRenderVideos(){
     console.log(selectedVideo);
 }
 console.log(renderedVideos);
+
+async function removeVideo(videoId){
+    
+    try{
+    let deleteVideo = await GrooveApi.removeVideo(username, playlist_name, videoId)
+    history.push(`/playlists/${playlist_name}`);
+    window.location.reload();   
+    }catch(errors){
+    setErrors(errors);
+    }
+}
 const displayVideos =  renderedVideos.map((video) => {
+   // videoId = video.data.items[0].id
+    
     return(
     <div>
-        
-    <VideoItem className="video-list" key={video.data.items[0].id.videoId} video={video.data.items[0]} handleVideoSelect={handleVideoSelect}/>
-     <p className="trash-align"><Link><FaTrashAlt className="trash"/></Link></p>
+       
+    <VideoItem className="video-list" key={video.data.items[0].id} video={video.data.items[0]} handleVideoSelect={handleVideoSelect}/>
+     <p className="trash-align"><Link><FaTrashAlt className="trash" onClick={()=>removeVideo(video.data.items[0].id)}/></Link></p>
    
     </div>
 )});
