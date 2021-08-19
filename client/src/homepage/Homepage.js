@@ -21,20 +21,32 @@ function Homepage() {
 
     return (
         <div className="Homepage">
-                 
+                
              {/* <div className="container text-center">
                 <h1 className="mb-4 font-weight-bold">
                     Groove
                 </h1>
                 <h2 className="lead">
                     One stop for all your favorite music
-                </h2>
+                </h2> */}
 
                 {currentUser
-                   ? <h2>
+                   ? 
+                   <div>
+                   {/* <h2>
                        Welcome Back, {currentUser.first_name || currentUser.username}!
-                   </h2>
+                       
+                   </h2> */}
+                   <FeaturedPage/>
+                   </div>
                    : (
+                    <div className="container text-center">
+                    <h1 className="mb-4 font-weight-bold">
+                        Groove
+                    </h1>
+                    <h2 className="lead">
+                        One stop for all your favorite music
+                    </h2> 
                        <p>
                            <Link className="btn btn-dark btn-secondary font-weight-bold mr-3" to="/login">
                             Log in
@@ -44,9 +56,10 @@ function Homepage() {
                            </Link>
                           
                        </p>
+                       </div>
                    )}
-            </div>  */}
-            <FeaturedPage/>
+             
+            {/* <FeaturedPage/> */}
         </div>
     );
 }

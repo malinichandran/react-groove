@@ -4,7 +4,7 @@ import UserContext from "../auth/UserContext";
 import GrooveApi from "../api/api";
 import { useParams } from "react-router-dom";
 import PlaylistVideos from "./PlaylistVideos";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import "./ListOfPlaylists.css";
 
 
@@ -76,15 +76,20 @@ const ListOfPlaylists = ({videoId}) => {
 
  return(
      <div>
-       <h2>{currentUser.username}'s Playlists</h2>
+       
          {/* <ul>
              {playlists.map(playlist=>
                 <li key={playlist.id}><Link className="playlistlink" 
                 to={`/playlists/${playlist.playlist_name}`} onClick={addVideo}> {playlist.playlist_name} </Link></li>)}
                 
          </ul> */}
+         <Card className="playlistcardstyle">
+           <Card.Title>{currentUser.username}'s Playlists</Card.Title>
+           <Card.Text>
          <ul>
+
              {playlists.map(playlist=>
+             
                 <li key={playlist.id}><Link className="playlistlink" 
                 to={{
                   pathname:`/playlists/${playlist.playlist_name}`,
@@ -93,7 +98,10 @@ const ListOfPlaylists = ({videoId}) => {
                 }}> {playlist.playlist_name} </Link></li>)}
                 
          </ul>
-        <Button variant="secondary"><Link className="playlistlink" to="/addplaylist">Create New Playlist</Link></Button>
+         <Button variant="secondary"><Link className="Buttonlink" to="/addplaylist">Create New Playlist</Link></Button>
+         </Card.Text>
+         </Card>
+        
      </div>
  )
 }

@@ -10,7 +10,7 @@
   .container{
     height: calc(100vh - 150px);
     text-align: center;
-    padding-left: 10rem;
+    
   }
   .btn{
     margin: 1rem;

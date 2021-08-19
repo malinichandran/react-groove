@@ -75,3 +75,11 @@ iframe{
   font-family: sans-serif;
   color:white
 }
+
+.Modalstyle{
+  background-color: rgb(166, 189, 197);
+}
+
+.Modallist{
+  background-color: thistle;
+}

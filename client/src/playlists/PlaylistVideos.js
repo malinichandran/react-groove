@@ -166,8 +166,9 @@ async function deletePlaylist(){
                   : null}
                 
        </div> */}
-       <h3>{`${playlist_name}`}</h3>
+       <h3 className="namestyle">{`${playlist_name}`}</h3>
        <div className="eleven wide column">
+       
                  <PlayingPlaylistVideo video={selectedVideo}/>
              </div>
        <div >{displayVideos}</div>;

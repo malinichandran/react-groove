@@ -56,14 +56,15 @@ const VideoDetail = ({ video }) => {
           onHide={handleClose}
           backdrop="static"
           keyboard={false}
+          
         >
-          <Modal.Header>
+          <Modal.Header className="Modalstyle">
             <Modal.Title>Choose a playlist</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-           <ListOfPlaylists videoId={video.id.videoId}/>
+          <Modal.Body className="Modalstyle">
+           <ListOfPlaylists className="Modallist" videoId={video.id.videoId}/>
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer className="Modalstyle">
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
