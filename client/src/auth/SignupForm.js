@@ -106,6 +106,7 @@ import "./SignupForm.css";
                       name="profile_pic"
                       className="form-control"
                       value={formData.profile_pic}
+                      placeholder="Optional"
                       onChange={handleChange}
                   />
                 </div>
@@ -116,6 +117,7 @@ import "./SignupForm.css";
                       name="country"
                       className="form-control"
                       value={formData.country}
+                      placeholder="Optional"
                       onChange={handleChange}
                   />
                 </div>

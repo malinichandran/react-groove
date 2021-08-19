@@ -171,11 +171,12 @@ async function deletePlaylist(){
                  <PlayingPlaylistVideo video={selectedVideo}/>
              </div>
        <div >{displayVideos}</div>;
-       <button className="btn btn-secondary"><Link to={`/editplaylist/${playlist_name}`}>Edit Playlist</Link></button>
+       <div className="button">
+       <Button className="btn btn-secondary"><Link className="link" to={`/editplaylist/${playlist_name}`}>Edit Playlist</Link></Button>
        <Button variant="warning" onClick={handleShow}>
          Delete playlist
         </Button>
-  
+        </div>
         <Modal
           show={show}
           onHide={handleClose}

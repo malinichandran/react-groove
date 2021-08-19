@@ -66,9 +66,9 @@ function handleVideoSelect(video){
                         <input onChange={handleChange} name='video-search' type="text" placeholder="Search for your favorite videos.."/>
                     </div>
                 </form>
-                <div className='ui container' style={{marginTop: '1em'}}>
+                {/* <div className='ui container' style={{marginTop: '1em'}}> */}
      
-     <div className='ui grid'>
+     
          <div>
              
              <div className="eleven wide column">
@@ -81,9 +81,9 @@ function handleVideoSelect(video){
              </div>
              
          </div>
-     </div>
+     
  </div>
-            </div>
+            {/* </div> */}
 
             </>
         )

@@ -14,6 +14,7 @@ function EditPlaylist(){
     useEffect(function callPlaylistData(){
         playlistData(playlist_name);
     },[]);
+    
     async function playlistData(playlist_name){
      try{
  result = await GrooveApi.getPlaylistData(playlist_name);

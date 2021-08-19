@@ -1,10 +1,18 @@
 .Homepage {
     /* put around the vertical center of page */
+    
     height: calc(100vh - 150px);
     display: flex;
     align-items: initial;
+    
   }
   
+  .container{
+    height: calc(100vh - 150px);
+    text-align: center;
+    padding-left: 10rem;
+  }
   .btn{
     margin: 1rem;
+    background-color: rgb(166, 189, 197);
   }

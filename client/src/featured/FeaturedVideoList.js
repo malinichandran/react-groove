@@ -1,10 +1,11 @@
-
 import React from 'react';
-import VideoItem from './VideoItem';
-import "./video.css";
+import FeaturedVideoItem from './FeaturedVideoItem';
+import "../search/video.css";
 import ListOfPlaylists from "../playlists/ListOfPlaylists";
+import Card from "react-bootstrap/Card";
+import CardGroup from "react-bootstrap/CardGroup";
 
-const VideoList = ({videos , handleVideoSelect}) => {
+const FeaturedVideoList = ({videos , handleVideoSelect}) => {
     // const renderedVideos =  videos.map((video) => {
     //     return(
     //     <div>
@@ -15,16 +16,16 @@ const VideoList = ({videos , handleVideoSelect}) => {
     // )});
     
     const renderedVideos = videos.map((video) => {
-        if(video.id.videoId === undefined){
+        if(video.id === undefined){
             return;
         }else{
             return(
                 <div>
-                    <VideoItem className="video-list" key={video.id.videoId} video={video} handleVideoSelect={handleVideoSelect} />
-                </div>
+                    <FeaturedVideoItem className="video-list" key={video.id} video={video} handleVideoSelect={handleVideoSelect} />
+                    </div>
             )
         }
     })
     return <div >{renderedVideos}</div>;
 };
-export default VideoList;
+export default FeaturedVideoList;

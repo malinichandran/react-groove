@@ -4,5 +4,13 @@
     align-self: start;
 }
 .trash-align{
-    padding-left: 12rem;
+    padding-left: 15rem;
+}
+
+.link{
+    color:black
+}
+
+.button{
+    padding-left: 14rem;
 }

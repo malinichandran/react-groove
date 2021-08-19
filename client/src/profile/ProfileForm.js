@@ -61,7 +61,10 @@ function ProfileForm(){
         setFormErrors([]);
     }
 
-
+    function handleClose(){
+      history.push("/profile");
+    }
+    
    return(
      <div>
     <div className="col-lg-6 offset-md-3 col-lg-8  offset-lg-1">
@@ -143,6 +146,11 @@ function ProfileForm(){
               onClick={handleSubmit}
           >
             Save Changes
+          </button>
+          <button
+              className="btn btn-secondary btn-block mt-4"
+              onClick={handleClose}>
+                Close
           </button>
         </form>
       </div>

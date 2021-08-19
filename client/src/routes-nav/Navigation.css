@@ -3,7 +3,7 @@
     
   }
   .navbar-nav .nav-item{
-    color:orange;
+    color:rgb(166, 189, 197);
     font-size: bold;
       font-weight: bold;
       padding: 1rem;
@@ -11,7 +11,7 @@
   }
   .nav-link{
     
-      color:orange;
+      color:rgb(166, 189, 197);
       font-size: bold;
       font-weight: bold;
       padding: 1rem;
@@ -22,7 +22,7 @@
   }
 
   .navbar-brand{
-      color:orange;
+      color:rgb(166, 189, 197);
       font-weight: bold;
       padding: 1rem;
   }

@@ -4,6 +4,7 @@ import"./Homepage.css";
 import UserContext from "../auth/UserContext";
 import SearchBar from "../search/SearchBar";
 import Searchbar from "../search/SearchBar";
+import FeaturedPage from "../featured/FeaturedPage";
 
 /*** Homepage of site 
  * 
@@ -21,13 +22,13 @@ function Homepage() {
     return (
         <div className="Homepage">
                  
-            <div className="container text-center">
+             {/* <div className="container text-center">
                 <h1 className="mb-4 font-weight-bold">
                     Groove
                 </h1>
-                <p className="lead">
+                <h2 className="lead">
                     One stop for all your favorite music
-                </p>
+                </h2>
 
                 {currentUser
                    ? <h2>
@@ -35,16 +36,17 @@ function Homepage() {
                    </h2>
                    : (
                        <p>
-                           <Link className="btn btn-dark font-weight-bold mr-3" to="/login">
+                           <Link className="btn btn-dark btn-secondary font-weight-bold mr-3" to="/login">
                             Log in
                            </Link>
-                           <Link className="btn btn-dark font-weight-bold" to="/signup">
+                           <Link className="btn btn-dark btn-secondary font-weight-bold" to="/signup">
                             Sign Up
                            </Link>
                           
                        </p>
                    )}
-            </div>
+            </div>  */}
+            <FeaturedPage/>
         </div>
     );
 }

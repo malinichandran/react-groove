@@ -4,8 +4,8 @@ import UserContext from "../auth/UserContext";
 import VideoContext from "../auth/VideoContext";
 import "./video.css";
 import ListOfPlaylists from "../playlists/ListOfPlaylists";
-import AddPlaylistModal from "../playlists/AddPlaylistModal";
-//import "../playlists/AddPlaylistModal.css";
+
+
 import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
@@ -71,7 +71,7 @@ const VideoDetail = ({ video }) => {
           </Modal.Footer>
         </Modal>
       
-        <p>{video.snippet.description}</p>
+        
         
       </div>
       

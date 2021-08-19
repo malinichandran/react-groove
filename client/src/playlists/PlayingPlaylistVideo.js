@@ -4,7 +4,7 @@ import UserContext from "../auth/UserContext";
 import VideoContext from "../auth/VideoContext";
 import "../search/video.css";
 import ListOfPlaylists from "../playlists/ListOfPlaylists";
-import AddPlaylistModal from "../playlists/AddPlaylistModal";
+
 //import "../playlists/AddPlaylistModal.css";
 import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";

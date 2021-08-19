@@ -19,11 +19,19 @@
     height: 100%;
   } */
 
+ 
+
+  .eleven.wide.column{
+    padding-top: 0px;
+    color:white;
+  }
+  
   .link{
     color:black;
   }
   .ui.embed{
-    padding:30px;
+    
+    padding-left:60rem;
   }
 
   
@@ -31,19 +39,39 @@
     display: flex !important;
     align-items: center !important;
     cursor: pointer;
-    padding: 10px;
+    padding-top: 0px;
+    padding-left: 5rem;
+    padding-bottom: 20px;
+    padding-right: 20px;
     color:white
 }
 
 .video-item.item img {
-    max-width: 200px;
+    max-width: 500px;
     max-height: 250px ;
 }
 
 .video-list {
   border-left: 1px solid lightgray;
-  grid-row: span 2;
+  grid-row:span 2;
   padding: 0px 20px;
   height: 100%;
   overflow: auto;
+}
+
+iframe{
+ 
+  width: 400px;
+  height: 200px;
+  padding-left:4px;
+  align-items: center;
+  z-index:100000;
+  
+}
+
+.header{
+  padding-left: 1rem;
+  font-style: italic;
+  font-family: sans-serif;
+  color:white
 }
