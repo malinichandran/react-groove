@@ -75,6 +75,8 @@ console.log("register", profile_pic);
 
         const hashedPassword = await brcypt.hash(password, BCRYPT_WORK_FACTOR);
        if(profile_pic === ''){
+           profile_pic = null;
+           console.log(profile_pic);
            result = await db.query(
             `INSERT INTO users 
             (username,
@@ -82,8 +84,9 @@ console.log("register", profile_pic);
               last_name,
               email,
               password,
+              profile_pic
               country)
-           VALUES ($1, $2, $3, $4, $5, $6)
+           VALUES ($1, $2, $3, $4, $5, $6, $7)
            RETURNING username,
                       first_name ,
                       last_name,
@@ -96,6 +99,7 @@ console.log("register", profile_pic);
                       last_name,
                       email,
                       hashedPassword,
+                      profile_pic,
                       country,
                   ],
            )
