@@ -27,13 +27,12 @@ return(
     <div className="FeaturedVideoDetail">
       
        <div className="ui embed">
-        <iframe src={videoSrc} allowFullScreen title="Video player" />
+        <iframe src={videoSrc} allowFullScreen title="Video player" >
+
+        <p >{video.snippet.title}</p>
+        </iframe>
       </div>
-      <div className="ui segment">
-        <h6 className="ui header">{video.snippet.title}</h6>
-         
-       
-        </div>
+      
         </div>
 )
 }

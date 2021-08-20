@@ -1,17 +1,32 @@
 .playlistlink{
-    color:black;
+    color:white;
     font-weight: 700;
     font-family: sans-serif;
     
 }
+
+
 .Buttonlink{
     color:black;
 }
 
+.Buttonlink:hover{
+    color:black;
+}
 .playlistcardstyle{
-    opacity:0.6;
-    width: 25rem;
-    padding:20px;
-    margin-left: 30px ;
-    background-color: white;
+    opacity:0.8; 
+    width: 15rem;
+    padding:0px;
+
+    margin-left: 5rem ;
+    background-color:black;
   }
+
+.playlistcardtitle{
+    color:white;
+    padding:20px;
+}
+
+/* .createplaylistbutton{
+    fill:black
+} */

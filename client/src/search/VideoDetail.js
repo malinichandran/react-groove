@@ -57,15 +57,16 @@ const VideoDetail = ({ video }) => {
           backdrop="static"
           keyboard={false}
           
+          
         >
-          <Modal.Header className="Modalstyle">
+          <Modal.Header className="Modalheader" >
             <Modal.Title>Choose a playlist</Modal.Title>
           </Modal.Header>
-          <Modal.Body className="Modalstyle">
-           <ListOfPlaylists className="Modallist" videoId={video.id.videoId}/>
+          <Modal.Body className="Modal Modalbody">
+           <ListOfPlaylists  videoId={video.id.videoId}/>
           </Modal.Body>
-          <Modal.Footer className="Modalstyle">
-            <Button variant="secondary" onClick={handleClose}>
+          <Modal.Footer className="Modalfooter">
+            <Button className="modalbutton" variant="light secondary" onClick={handleClose}>
               Close
             </Button>
            

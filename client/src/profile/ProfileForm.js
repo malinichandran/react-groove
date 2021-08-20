@@ -69,8 +69,8 @@ function ProfileForm(){
      <div>
     <div className="col-lg-6 offset-md-3 col-lg-8  offset-lg-1">
     <h3 className="mb-3">Edit Profile</h3>
-    <div className="card">
-      <div className="card-body">
+    <div className="profileformcard">
+      <div >
         <form>
           <div className="form-group">
             <label>Username</label>
@@ -83,6 +83,7 @@ function ProfileForm(){
                 className="form-control"
                 value={formData.first_name}
                 onChange={handleChange}
+              
             />
           </div>
           <div className="form-group">

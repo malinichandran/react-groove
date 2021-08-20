@@ -68,13 +68,15 @@ function AddPlaylist(){
         setPlaylist(newPlaylist);
         history.push("/playlists");
     }
-   
+   function handleClose(){
+       history.push("/playlists");
+   }
 return(
     <div>
         <div className="col-lg-6 offset-md-3 col-lg-8 offset-lg-1">
             <h3 className="mb-3">Add a new playlist</h3>
-            <div className="card">
-                <div className="card-body">
+            <div className="addplaylistcard">
+                <div >
                     <form>
                         <div className="form-group">
                             <label>Playlist Name</label>
@@ -115,7 +117,7 @@ return(
                                     onChange={checkValueChange}
                                      />
                         <label className="form-check-label" >
-                              Set playlist as private
+                               Private
                         </label>
                      </div>
                         </div>
@@ -128,12 +130,14 @@ return(
               <Alert type="success" messages={["Playlist added successfully."]} />
               : null}
 
-          <button
-              className="btn btn-secondary btn-block mt-4"
+          <Button
+              variant="light secondary"
               onClick={handleSubmit}
           >
             Save Changes
-          </button>
+          </Button>
+          <Button variant="light secondary"
+            onClick={handleClose}>Close  </Button>
                     </form>
                 </div>
             </div>

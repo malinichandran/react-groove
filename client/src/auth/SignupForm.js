@@ -46,8 +46,8 @@ import "./SignupForm.css";
         <div className="SignupForm">
         <div className="col-lg-6 offset-md-3 col-lg-8 offset-lg-1">
           <h3 className="mb-3">Sign Up</h3>
-          <div className="card">
-            <div className="card-body">
+          <div className="signupcard">
+            <div>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label>Username</label>

@@ -84,7 +84,7 @@ const ListOfPlaylists = ({videoId}) => {
                 
          </ul> */}
          <Card className="playlistcardstyle">
-           <Card.Title>{currentUser.username}'s Playlists</Card.Title>
+           <Card.Title className="playlistcardtitle">{currentUser.username}'s Playlists</Card.Title>
            <Card.Text>
          <ul>
 
@@ -98,7 +98,7 @@ const ListOfPlaylists = ({videoId}) => {
                 }}> {playlist.playlist_name} </Link></li>)}
                 
          </ul>
-         <Button variant="secondary"><Link className="Buttonlink" to="/addplaylist">Create New Playlist</Link></Button>
+         <Button  variant="light secondary"><Link className="Buttonlink" to="/addplaylist">Create New Playlist</Link></Button>
          </Card.Text>
          </Card>
         

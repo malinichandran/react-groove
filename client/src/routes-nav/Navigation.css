@@ -9,20 +9,28 @@
       padding: 1rem;
       font-family: sans-serif;
   }
+
+ 
   .nav-link{
     
-      color:rgb(166, 189, 197);
+      color:orange;
       font-size: bold;
       font-weight: bold;
       padding: 1rem;
   }
-  .nav-link .active {
+
+  .nav-link:active{
+    color:black;
+  }
+
+  .nav-link:hover{
     font-weight: bold;
-    color: gray;
+    color: darkgray;
   }
 
   .navbar-brand{
-      color:rgb(166, 189, 197);
+      /* color:rgb(166, 189, 197); */
+      color:orange;
       font-weight: bold;
       padding: 1rem;
   }

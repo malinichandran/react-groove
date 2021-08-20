@@ -3,6 +3,8 @@ import UserContext from "../auth/UserContext";
 import GrooveApi from "../api/api";
 import Alert from "../common/Alert";
 import { useHistory, useParams } from "react-router-dom";
+import "./EditPlaylist.css";
+import {Button} from "react-bootstrap";
 
 function EditPlaylist(){
     const history = useHistory();
@@ -10,6 +12,12 @@ function EditPlaylist(){
     console.log(playlist_name);
     const [playlist, setPlaylist] = useState([]);
     const [checked, setChecked] = useState(true);
+    const [formData, setFormData] = useState({
+        playlist_name: "",
+        description: "",
+        public_private_flag: checked
+    });
+
     let result;
     useEffect(function callPlaylistData(){
         playlistData(playlist_name);
@@ -18,19 +26,15 @@ function EditPlaylist(){
     async function playlistData(playlist_name){
      try{
  result = await GrooveApi.getPlaylistData(playlist_name);
-console.log(result)
+setFormData(result)
 
      }catch(errs){
         console.log(errs);
      }
      
     }
-    console.log(result);
-        const [formData, setFormData] = useState({
-            playlist_name: "",
-            description: "",
-            PUBLIC_PRIVATE_FLAG: checked
-        });
+   
+       
     const [formErrors, setFormErrors] = useState([]);
     const [saveConfirmed, setSaveConfirmed] = useState(false);
 
@@ -39,7 +43,7 @@ console.log(result)
         let playlistData = {
             playlist_name: formData.playlist_name,
             description: formData.description,
-            PUBLIC_PRIVATE_FLAG: checked
+            public_private_flag: checked
         }
         let updatedPlaylist;
         try{
@@ -55,8 +59,9 @@ console.log(result)
         history.push("/playlists");
         
     }
-
+console.log(formData)
     function handleChange(evt){
+        console.log("handlechange called");
         const {name, value} = evt.target;
         setFormData(data => ({...data, [name]:value}));
         setFormErrors([]);
@@ -64,16 +69,21 @@ console.log(result)
 
     function onValueChange(e){
         console.log(e.target.value)
-        setChecked(e.target.value === !e.target.value)
-
+        setChecked(e.target.value === !e.target.value);
+        setFormData(checked)
         console.log(checked)
+       
+    }
+    
+    function handleClose(){
+        history.push(`/playlists/${playlist_name}`)
     }
     return(
         <div>
         <div className="col-lg-6 offset-md-3 col-lg-8 offset-lg-1">
             <h3 className="mb-3">Edit playlist</h3>
-            <div className="card">
-                <div className="card-body">
+            <div className="editplaylistcard">
+                <div >
                     <form>
                         <div className="form-group">
                             <label>Playlist Name</label>
@@ -81,7 +91,8 @@ console.log(result)
                                name="playlist_name"
                                className="form-control"
                                value={formData.playlist_name}
-                               onChange={handleChange}/>
+                              onChange={handleChange}
+                               />
                         </div>
                         <div className="form-group">
                             <label>Description</label>
@@ -89,18 +100,20 @@ console.log(result)
                                name="description"
                                className="form-control"
                                value={formData.description}
-                               onChange={handleChange}/>
+                               onChange={handleChange}
+                               />
                         </div>
                         <div className="form-group">
                             <div className="form-check">
                          <input className="form-check-input" 
                                     type="checkbox"
-                                    name="PUBLIC_PRIVATE_FLAG"
-                                    value={formData.PUBLIC_PRIVATE_FLAG}
+                                    name="public_private_flag"
+                                    value={formData.public_private_flag}
+                                    checked={!formData.public_private_flag}
                                     onChange={onValueChange}
                                      />
                         <label className="form-check-label" >
-                              Set playlist as private
+                              Private
                         </label>
                      </div>
                         </div>
@@ -113,12 +126,16 @@ console.log(result)
               <Alert type="success" messages={["Playlist added successfully."]} />
               : null}
 
-          <button
-              className="btn btn-secondary btn-block mt-4"
+          <Button
+              variant="light secondary"
               onClick={handleSubmit}
           >
             Save Changes
-          </button>
+          </Button>
+          <Button variant="light secondary"
+                  onClick={handleClose}>
+              Close
+          </Button>
                     </form>
                 </div>
             </div>

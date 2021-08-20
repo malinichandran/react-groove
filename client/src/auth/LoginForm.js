@@ -45,8 +45,8 @@ function LoginForm( {login}) {
             <div className="col-lg-6 offset-md-3 col-lg-8 offset-lg-1">
                 <h3 className="mb-3">Log In</h3>
 
-          <div className="card">
-            <div className="card-body">
+          <div className="logincard">
+            <div >
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label>Username</label>

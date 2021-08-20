@@ -17,7 +17,7 @@
 }
 .ui.embed{
   padding-top: 8rem;
-  padding-left:8rem;
+  padding-left:16rem;
 }
 /* .ui.header{ 
   padding-left: 20rem;
@@ -45,6 +45,7 @@
 }
 
 .video-list {
+  padding-top: 10rem;
 border-left: 1px solid lightgray;
 grid-row: span 2;
 padding: 0px 20px;
@@ -54,9 +55,10 @@ overflow: auto;
 
 iframe{
  
-  width: 400px;
-  height: 200px;
+  width: 600px;
+  height: 400px;
   padding-left:4px;
+  padding-bottom: 5rem;
   align-items: center;
   z-index:100000;
   
@@ -65,7 +67,7 @@ iframe{
 .FeaturedPageh1{
   padding-left:15rem;
   padding-bottom: 10px;
-  color:rgb(32, 73, 100);
+  color:white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -73,16 +75,17 @@ iframe{
   background-color: rgb(166, 189, 197);
 }
 .ui.segment{
- padding-left: 8rem;
+ padding-left: 10rem;
  color:black
 }
  
-.header{
-  padding-left: 1rem;
+/* .ui.header{
+  padding-left: 10rem;
+  padding-top:2rem;
   font-style: italic;
   font-family: sans-serif;
   
-}
+} */
 
 .Alert{
   align-items: center;

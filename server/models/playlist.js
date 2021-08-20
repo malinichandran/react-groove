@@ -149,7 +149,7 @@ class Playlist {
         );
         console.log(result);
         const playlistData = result.rows[0];
-        console.log("playlistData", playlistData);
+        
         return playlistData;
 
     }

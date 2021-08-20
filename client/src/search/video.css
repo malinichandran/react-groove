@@ -76,10 +76,19 @@ iframe{
   color:white
 }
 
-.Modalstyle{
-  background-color: rgb(166, 189, 197);
+.Modal{
+ background-color: black;
+ color:white;
+align-content: center;
 }
 
-.Modallist{
-  background-color: thistle;
+.Modalheader{
+  background-color: rgb(155, 150, 142);
+}
+.Modalfooter{
+  background-color:  rgb(155, 150, 142);
+}
+
+.modalbutton{
+ background-color: rgb(19, 11, 8);
 }

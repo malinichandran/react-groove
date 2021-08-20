@@ -9,8 +9,8 @@ function ProfileData({profile}){
 
   return(
       <div >
-         <Card  className="cardstyle">
-  <Card.Img variant="top" src={profile.profile_pic} />
+         <Card  className="ProfileData">
+  <Card.Img variant="top" className="ProfileImg" src={profile.profile_pic} />
   <Card.Body variant="top">
     <Card.Title>User Profile</Card.Title>
     <Card.Text>
@@ -19,7 +19,7 @@ function ProfileData({profile}){
       <p>email: {profile.email}</p>
       <p>Country of living: {profile.country}</p>
     </Card.Text>
-    <Button variant="secondary"><Link className="link" to="/editprofile">Edit Profile</Link></Button>
+    <Button variant="light secondary"><Link className="link" to="/editprofile">Edit Profile</Link></Button>
     <Button variant="danger"><Link className="link" to="/deleteprofile">Delete Profile</Link></Button>
   </Card.Body>
 </Card>

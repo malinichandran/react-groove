@@ -1,14 +1,22 @@
 .link {
   color:black;
 }
-
+.link:hover{
+  color:black;
+}
 Button{
   background-color: ;
 }
-.cardstyle{
-  opacity:0.9;
+.ProfileData{
+  opacity:0.8; 
+  background-color: black;
   width: 28rem;
   padding:10px;
   margin-left: 150px ;
-  background-color: whitesmoke;
+  /* background-color: rgb(245, 235, 142); */
+  color: rgb(231, 205, 157);
+}
+
+.ProfileImg{
+  opacity:1.0;
 }

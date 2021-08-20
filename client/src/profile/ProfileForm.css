@@ -3,12 +3,15 @@ h3{
 }
 
 .form-group{
-    width: 40rem;
+    
+    width: 83%;
+    overflow: auto;
 }
 
-.card{
-    background-color: lightgrey;
-    opacity: 0.8;
+.profileformcard{
+    padding-top: 30px;
+    background-color: black;
+    opacity: 0.7;
 }
 form{
    padding-left: 9rem;
@@ -16,6 +19,21 @@ form{
 }
 
 .btn{
-    background-color:rgb(166, 189, 197);
+    background-color:orange;
     color:black;
+}
+
+label{
+    color:white;
+}
+
+.form-control{
+   
+    font-family: sans-serif;
+    font-weight: initial;
+    color:black;
+}
+
+.form-control-plaintext{
+    color:rgb(231, 205, 157);
 }

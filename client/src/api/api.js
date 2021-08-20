@@ -98,9 +98,9 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
   }
   /**Get data on a playlist */
   static async getPlaylistData(playlist_name){
-      let res = await this.request(`playlists/${playlist_name}` )
-      //return res.playlist;
-      console.log(res.playlist);
+      let res = await this.request(`playlists/edit/getdata/${playlist_name}` )
+      return res.playlist;
+     // console.log(res.playlist);
   }
 
   /**Delete a playlist */

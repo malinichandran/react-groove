@@ -4,7 +4,7 @@ CREATE TABLE users (
     last_name TEXT NOT NULL,
     email TEXT NOT NULL CHECK (position('@' IN email) > 1),
     password TEXT NOT NULL,
-    profile_pic TEXT DEFAULT "https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg",
+    profile_pic TEXT DEFAULT 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg',
     country TEXT 
 );
 

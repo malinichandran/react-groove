@@ -143,9 +143,9 @@ const router = new express.Router();
 
  /**GET data of a playlist given a playlist_name */
 
- router.get("/:playlist_name", ensureCorrectUser, async function(req, res, next) {
+ router.get("/edit/getdata/:playlist_name", ensureCorrectUser, async function(req, res, next) {
     try{
-        console.log(playlist_name);
+        console.log(req.params.playlist_name);
        const playlist = await Playlist.getPlaylistData(req.params.playlist_name);
            console.log(playlist);
        return res.json({playlist});

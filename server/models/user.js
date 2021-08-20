@@ -61,7 +61,8 @@ class User {
           password,
           profile_pic,
          country}) {
-
+let result;
+console.log("register", profile_pic);
         const duplicateCheck = await db.query(
                 `SELECT username 
                  FROM users
@@ -73,8 +74,34 @@ class User {
         }
 
         const hashedPassword = await brcypt.hash(password, BCRYPT_WORK_FACTOR);
-
-        const result = await db.query(
+       if(profile_pic === ' '){
+           result = await db.query(
+            `INSERT INTO users 
+            (username,
+              first_name,
+              last_name,
+              email,
+              password,
+              country)
+           VALUES ($1, $2, $3, $4, $5, $6)
+           RETURNING username,
+                      first_name ,
+                      last_name,
+                      email,
+                      profile_pic,
+                      country`,
+                  [
+                      username,
+                      first_name,
+                      last_name,
+                      email,
+                      hashedPassword,
+                      country,
+                  ],
+           )
+       }
+       else{
+         result = await db.query(
             `INSERT INTO users 
               (username,
                 first_name,
@@ -101,6 +128,8 @@ class User {
                     ],
         );
 
+       }
+        
         const user = result.rows[0];
 
         return user;
