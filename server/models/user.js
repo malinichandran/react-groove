@@ -74,7 +74,7 @@ console.log("register", profile_pic);
         }
 
         const hashedPassword = await brcypt.hash(password, BCRYPT_WORK_FACTOR);
-       if(profile_pic === ' '){
+       if(profile_pic === ''){
            result = await db.query(
             `INSERT INTO users 
             (username,
