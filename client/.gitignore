@@ -1,2 +1,5 @@
 node_modules
-src/api
+src/api/api.js
+src/api/featuredApi.js
+src/api/VideosApi.js
+src/api/Youtube.js
