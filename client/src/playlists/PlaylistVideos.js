@@ -38,11 +38,18 @@ function PlaylistVideos(){
 
 const [videoIds, setVideoIds] = useState([]);
 const [renderedVideos, setRenderedVideos] = useState([]);
+
 useEffect(function callAddVideo(){
-    addVideo(video);
-},[])
+    if(video){
+        addVideo(video);
+    } else{
+        return;
+    }
+   
+},[video])
 
     async function addVideo(video){
+        console.log(video)
         let videoData = {
             api_video_id: video,
             website: 'Youtube'
@@ -82,14 +89,13 @@ async function getVideoIds(playlist_name){
         return;
     }
 }
-console.log(videoIds);
+
 
 
 async function renderVideos(){
-    console.log("renderVideos called")
-    console.log(videoIds);
+    
     try{
-        console.log(videoIds);
+       
      const allVideos = videoIds.map(async videoId=>{
          const video = await  Youtube.get('/videos',{
             params:{
@@ -99,13 +105,12 @@ async function renderVideos(){
     return video;
 })
  videosGot = await Promise.all(allVideos);
-    console.log(videosGot)
    
    
         setRenderedVideos(videosGot);
         
     } catch (errors){
-        console.error("data fetch failed", errors);
+       
       return { success: false, errors};
     }
 }
@@ -115,9 +120,9 @@ useEffect(function callRenderVideos(){
 
   function handleVideoSelect(video){
     setSelectedVideo(video);
-    console.log(selectedVideo);
+   
 }
-console.log(renderedVideos);
+
 
 async function removeVideo(videoId){
     
@@ -136,13 +141,13 @@ const displayVideos =  renderedVideos.map((video) => {
     <div>
        
     <VideoItem className="video-list" key={video.data.items[0].id} video={video.data.items[0]} handleVideoSelect={handleVideoSelect}/>
-     <p className="trash-align"><Link><FaTrashAlt className="trash" onClick={()=>removeVideo(video.data.items[0].id)}/></Link></p>
+     <p className="trash-align"><a><FaTrashAlt className="trash" onClick={()=>removeVideo(video.data.items[0].id)}/></a></p>
    
     </div>
 )});
 
 let deleteAction
-console.log(playlist_name);
+
 
 async function deletePlaylist(){
     try{
@@ -154,7 +159,7 @@ async function deletePlaylist(){
 }
    return(
       <>
-      {/* <div>
+      <div>
            
           {errors.length
                   ? <Alert type="danger" messages={errors} />
@@ -165,7 +170,7 @@ async function deletePlaylist(){
                   <Alert type="success" messages={["Video added to playlist successfully."]} />
                   : null}
                 
-       </div> */}
+       </div>
        <h3 className="namestyle">{`${playlist_name}`}</h3>
        <div className="eleven wide column">
        
@@ -184,13 +189,13 @@ async function deletePlaylist(){
           backdrop="static"
           keyboard={false}
         >
-          <Modal.Header>
+          <Modal.Header className="header">
             <Modal.Title>Warning</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className="body">
            Proceeding with this action will delete all your videos in this playlist. Do you wish to proceed?
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer className="header">
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>

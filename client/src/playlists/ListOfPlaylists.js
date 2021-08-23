@@ -98,7 +98,10 @@ const ListOfPlaylists = ({videoId}) => {
                 }}> {playlist.playlist_name} </Link></li>)}
                 
          </ul>
-         <Button  variant="light secondary"><Link className="Buttonlink" to="/addplaylist">Create New Playlist</Link></Button>
+         <Button  variant="light secondary"><Link className="Buttonlink" to=
+                                        {{
+                                          pathname:"/addplaylist",
+                                          state: {video}}}>Create New Playlist</Link></Button>
          </Card.Text>
          </Card>
         

@@ -21,8 +21,9 @@ import Searchbar from "../search/SearchBar";
         return (
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item mr-4">
-                    <NavLink className="nav-link" to="/profile">
-                     Profile
+                    <NavLink className="nav-link" to="/search">
+                     Search
+                     
                     </NavLink>
                 </li>
                 <li className="nav-item mr-4">
@@ -30,17 +31,14 @@ import Searchbar from "../search/SearchBar";
                      Playlists
                     </NavLink>
                 </li>
-                {/* <li className="nav-item mr-4">
-                    <NavLink className="nav-link" to="/community">
-                     Community
-                    </NavLink>
-                </li> */}
                 <li className="nav-item mr-4">
-                    <NavLink className="nav-link" to="/search">
-                     Search
-                     
+                    <NavLink className="nav-link" to="/profile">
+                     Profile
                     </NavLink>
                 </li>
+                
+                
+                
                 <li className="nav-item mr-4">
                     <NavLink className="nav-link" to="/" onClick={logout}>
                      Log out {currentUser.first_name || currentUser.username}

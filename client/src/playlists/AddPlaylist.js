@@ -6,9 +6,12 @@ import Button from "react-bootstrap/Button";
 import Alert from "../common/Alert";
 import "./AddPlaylist.css";
 import GrooveApi from "../api/api";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation ,Link} from "react-router-dom";
+import PlaylistVideos from "./PlaylistVideos";
 
 function AddPlaylist(){
+    const location = useLocation();
+    const video = location.state?.video;
     const history = useHistory();
     const {currentUser} = useContext(UserContext);
     const [playlist, setPlaylist] = useState([]);
@@ -28,7 +31,7 @@ function AddPlaylist(){
 
    // const toggleChecked = () => setChecked(value => !value);
 
-   
+   console.log(video);
 
     function handleChange(evt){
         const { name, value } = evt.target;
@@ -62,11 +65,23 @@ function AddPlaylist(){
             setFormErrors(errors);
             return
         }
+        if(video === undefined){
         setFormData(f=>({...f}));
         setFormErrors([]);
         setSaveConfirmed(true);
         setPlaylist(newPlaylist);
         history.push("/playlists");
+        }
+        else{
+            setFormData(f=>({...f}));
+            setFormErrors([]);
+            setSaveConfirmed(true);
+            setPlaylist(newPlaylist);
+            history.push({
+                pathname:`/playlists/${newPlaylist.playlist_name}`,
+                state:{video}
+            })
+        }
     }
    function handleClose(){
        history.push("/playlists");

@@ -117,12 +117,14 @@ const router = new express.Router();
  */
 
  router.post("/:username/:playlist_name", ensureCorrectUser, async function( req, res, next) {
+     console.log("malini", req.body)
      try{
        const validator = jsonschema.validate(req.body, videoNewSchema);
        if (!validator.valid) {
         const errs = validator.errors.map(e => e.stack);
         throw new BadRequestError(errs);
       }
+      console.log(req.body)
       const video = await Video.create(req.params.username, req.params.playlist_name, req.body);
       return res.status(201).json({ video });
      } catch(err){

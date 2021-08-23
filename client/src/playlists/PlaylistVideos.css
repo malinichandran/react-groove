@@ -17,5 +17,14 @@
 
 .namestyle{
     padding-left: 16rem;
-    color: rgb(166, 189, 197);
+    color:black;
+}
+
+a{
+    cursor: pointer;
+}
+
+.header{
+    background-color: black;
+    opacity:0.9
 }
