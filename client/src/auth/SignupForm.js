@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Alert from "../common/Alert";
 import "./SignupForm.css";
+import profilepic from "../images/profilepic.jpeg"
 
 /** Signup form.
  *
@@ -15,7 +16,7 @@ import "./SignupForm.css";
          last_name: "",
          email: "",
          password: "",
-         profile_pic: "",
+         profile_pic: profilepic,
          country: ""
      });
      const [formErrors, setFormErrors] = useState([]);

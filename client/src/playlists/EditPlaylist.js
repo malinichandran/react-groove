@@ -9,13 +9,13 @@ import {Button} from "react-bootstrap";
 function EditPlaylist(){
     const history = useHistory();
     const {playlist_name} = useParams();
-    console.log(playlist_name);
+    
     const [playlist, setPlaylist] = useState([]);
     const [checked, setChecked] = useState(true);
     const [formData, setFormData] = useState({
         playlist_name: "",
         description: "",
-        public_private_flag: checked
+        public_private_flag: true
     });
 
     let result;
@@ -26,8 +26,8 @@ function EditPlaylist(){
     async function playlistData(playlist_name){
      try{
  result = await GrooveApi.getPlaylistData(playlist_name);
-setFormData(result)
-
+setFormData(result);
+setChecked(result.public_private_flag);
      }catch(errs){
         console.log(errs);
      }
@@ -68,10 +68,12 @@ console.log(formData)
     }
 
     function onValueChange(e){
-        console.log(e.target.value)
-        setChecked(e.target.value === !e.target.value);
-        setFormData(checked)
-        console.log(checked)
+        
+       setChecked((c)=>!c);
+       setFormData(f=>({...f,public_private_flag:checked}))
+        // setFormDa
+        console.log(e.target.checked)
+        console.log(formData)
        
     }
     
@@ -108,9 +110,10 @@ console.log(formData)
                          <input className="form-check-input" 
                                     type="checkbox"
                                     name="public_private_flag"
-                                    value={formData.public_private_flag}
-                                    checked={!formData.public_private_flag}
+                                    // value={formData.public_private_flag}
+                                    //checked={formData.public_private_flag}
                                     onChange={onValueChange}
+                                       checked={checked}
                                      />
                         <label className="form-check-label" >
                               Private
