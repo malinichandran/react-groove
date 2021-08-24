@@ -17,9 +17,9 @@
 
 *  Allows user to edit profile. The account can be deleted too which will simultaneously delete all user data.
 
-<h2><b>Click here to view the app in Heroku</b></h2>
+<h2><b>Click here to view the app</b></h2>
 
-[Heroku](https://your-cooking-made-easy.herokuapp.com/)
+[Groove](https://curious-rock.surge.sh/playlists)
 
 <h2><b>Installation</b></h2>
 
