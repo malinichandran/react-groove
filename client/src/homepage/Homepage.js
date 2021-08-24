@@ -2,8 +2,6 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import"./Homepage.css";
 import UserContext from "../auth/UserContext";
-import SearchBar from "../search/SearchBar";
-import Searchbar from "../search/SearchBar";
 import FeaturedPage from "../featured/FeaturedPage";
 
 /*** Homepage of site 
@@ -17,26 +15,14 @@ import FeaturedPage from "../featured/FeaturedPage";
 
 function Homepage() {
     const { currentUser } = useContext(UserContext);
- //   console.debug("Homepage", "currentUser=", currentUser);
 
     return (
         <div className="Homepage">
-                
-             {/* <div className="container text-center">
-                <h1 className="mb-4 font-weight-bold">
-                    Groove
-                </h1>
-                <h2 className="lead">
-                    One stop for all your favorite music
-                </h2> */}
 
                 {currentUser
                    ? 
                    <div>
-                   {/* <h2>
-                       Welcome Back, {currentUser.first_name || currentUser.username}!
-                       
-                   </h2> */}
+                  
                    <FeaturedPage/>
                    </div>
                    : (
@@ -58,8 +44,6 @@ function Homepage() {
                        </p>
                        </div>
                    )}
-             
-            {/* <FeaturedPage/> */}
         </div>
     );
 }

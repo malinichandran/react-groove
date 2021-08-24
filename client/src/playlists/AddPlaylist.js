@@ -1,13 +1,12 @@
 import React from "react";
 import {useState, useContext} from "react";
 import UserContext from "../auth/UserContext";
-import Form  from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "../common/Alert";
 import "./AddPlaylist.css";
 import GrooveApi from "../api/api";
-import { useHistory, useLocation ,Link} from "react-router-dom";
-import PlaylistVideos from "./PlaylistVideos";
+import { useHistory, useLocation } from "react-router-dom";
+
 
 function AddPlaylist(){
     const location = useLocation();
@@ -24,14 +23,6 @@ function AddPlaylist(){
         PUBLIC_PRIVATE_FLAG: checked
     })
     const [formErrors, setFormErrors] = useState([]);
-    
-    console.debug("playlistform",
-    "formData=",formData,   
-    "formErrors=", formErrors);
-
-   // const toggleChecked = () => setChecked(value => !value);
-
-   console.log(video);
 
     function handleChange(evt){
         const { name, value } = evt.target;
@@ -39,13 +30,8 @@ function AddPlaylist(){
         setFormErrors([]);
     }
 
-
-
     function checkValueChange(e){
-        console.log(e.target.value)
-        setChecked(e.target.value === !e.target.value)
-
-        console.log(checked)
+        setChecked(e.target.value === !e.target.value);
     }
 
     async function handleSubmit(evt){
@@ -56,7 +42,6 @@ function AddPlaylist(){
             description: formData.description,
             PUBLIC_PRIVATE_FLAG: checked
         }
-        console.log(playlistData)
         let newPlaylist;
         try{
             newPlaylist = await GrooveApi.addPlaylist(playlistData);
@@ -83,9 +68,11 @@ function AddPlaylist(){
             })
         }
     }
+
    function handleClose(){
        history.push("/playlists");
    }
+
 return(
     <div>
         <div className="col-lg-6 offset-md-3 col-lg-8 offset-lg-1">
@@ -109,20 +96,7 @@ return(
                                value={formData.description}
                                onChange={handleChange}/>
                         </div>
-                        {/* <div className="form-group">
-                            <div className="form-check">
-                         <input className="form-check-input" 
-                                    type="radio"
-                                    name="PUBLIC_PRIVATE_FLAG"
-                                     value="true"
-                                     checked={checked==="true"}
-                                     onChange={onValueChange}
-                                     />
-                        <label className="form-check-label" >
-                              Public
-                        </label> 
-                     </div>
-</div>*/}
+                       
                         <div className="form-group">
                             <div className="form-check">
                          <input className="form-check-input" 

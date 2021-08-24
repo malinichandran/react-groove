@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import Carousel from 'react-bootstrap/Carousel';
 import featuredApi from "../api/featuredApi";
 import "./FeaturedPage.css";
-import VideoDetail from "../search/VideoDetail";
 import FeaturedVideoList from "./FeaturedVideoList";
 import FeaturedVideoDetail from "./FeaturedVideoDetail";
 
@@ -29,18 +27,14 @@ function FeaturedPage(){
 }
 console.log(selectedVideo);
     return(
-      <>
-       
-       
-           
+      <>  
            <div className="eleven wide column">
                <FeaturedVideoDetail video={selectedVideo}/>
            </div>
             <div className="five wide column">
            <h1 className="FeaturedPageh1">Most popular videos</h1>
                <FeaturedVideoList handleVideoSelect={handleVideoSelect} videos={videos}/>
-               {/* <ListOfPlaylists video={selectedVideo}/> */}
-               {/* <PlaylistVideos video={selectedVideo}/> */}
+              
             </div> 
            
    </>

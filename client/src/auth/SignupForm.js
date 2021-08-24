@@ -21,12 +21,7 @@ import profilepic from "../images/profilepic.jpeg"
      });
      const [formErrors, setFormErrors] = useState([]);
 
-     console.debug(
-        "SignupForm",
-        "signup=", typeof signup,
-        "formData=", formData,
-        "formErrors=", formErrors,
-    );
+    
 
     async function handleSubmit(evt){
         evt.preventDefault();

@@ -16,7 +16,7 @@
 .playlistcardstyle{
     opacity:0.8; 
     width: 15rem;
-    padding:0px;
+    padding:18px;
 
     margin-left: 5rem ;
     background-color:black;
@@ -27,6 +27,8 @@
     padding:20px;
 }
 
-/* .createplaylistbutton{
-    fill:black
-} */
+
+.createplaylistbutton{
+    padding:10px;
+    margin:10px
+} 

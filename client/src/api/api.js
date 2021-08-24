@@ -76,7 +76,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
        
        let res = await this.request(`users/${username}`, {} , "delete");
         return res;
-        //console.log(res);
+        
    }
   /** Get videos of a playlist */
 
@@ -100,7 +100,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
   static async getPlaylistData(playlist_name){
       let res = await this.request(`playlists/edit/getdata/${playlist_name}` )
       return res.playlist;
-     // console.log(res.playlist);
+     
   }
 
   /**Delete a playlist */

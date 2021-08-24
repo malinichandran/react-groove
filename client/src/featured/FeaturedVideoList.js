@@ -1,23 +1,17 @@
 import React from 'react';
 import FeaturedVideoItem from './FeaturedVideoItem';
 import "../search/video.css";
-import ListOfPlaylists from "../playlists/ListOfPlaylists";
-import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
+
 
 const FeaturedVideoList = ({videos , handleVideoSelect}) => {
-    // const renderedVideos =  videos.map((video) => {
-    //     return(
-    //     <div>
-            
-    //     <VideoItem className="video-list" key={video.id.videoId} video={video} handleVideoSelect={handleVideoSelect} />
-       
-    //     </div>
-    // )});
     
     const renderedVideos = videos.map((video) => {
         if(video.id === undefined){
-            return;
+            return(
+                <div>
+                  <br></br>
+                  <p style={{ fontSize: "25px" }}></p>
+                </div>)
         }else{
             return(
                 <div>

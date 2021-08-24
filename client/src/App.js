@@ -7,10 +7,6 @@ import LoadingSpinner from "./common/LoadingSpinner";
 import UserContext from "./auth/UserContext";
 import GrooveApi from "./api/api";
 import jwt from "jsonwebtoken";
-import SearchBar from './search/SearchBar';
-import youtube from './api/Youtube';
-import VideoList from './search/VideoList';
-import VideoDetail from './search/VideoDetail';
 import "./style/App.css";
 
 //key name for storing token in local storage for "remember-me" re login
@@ -32,148 +28,90 @@ export const TOKEN_STORAGE_ID = "groove-token";
  * App -> Routes
  */
 
- function App(){
+function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
-//   const [videos, setVideos] = useState([]);
-//   const [selectedVideo, setSelectedVideo] = useState(null);
-  
 
-//   console.debug(
-//     "App",
-//     "infoLoaded=", infoLoaded,
-//     "currentUser=", currentUser,
-//     "token=", token,
-// );
-
-// Load user info from API. Until a user is logged in and they have a token,
+  // Load user info from API. Until a user is logged in and they have a token,
   // this should not run. It only needs to re-run when a user logs out, so
   // the value of the token is a dependency for this effect.
 
-  useEffect(function loadUserInfo(){
-      //console.debug("App useEffect loaduserinfo", "token=", token);
-
-      async function getCurrentUser(){
-          if(token){
-              try{
-                  let { username } = jwt.decode(token);
-                  // put the token on the Api class so it can use it to call the API.
-                  GrooveApi.token = token;
-                  let currentUser = await GrooveApi.getCurrentUser(username);
-                  setCurrentUser(currentUser);
-              } catch(err){
-                console.error("App loadUserInfo: problem loading", err);
-                setCurrentUser(null);
-              }
+  useEffect(
+    function loadUserInfo() {
+      async function getCurrentUser() {
+        if (token) {
+          try {
+            let { username } = jwt.decode(token);
+            // put the token on the Api class so it can use it to call the API.
+            GrooveApi.token = token;
+            let currentUser = await GrooveApi.getCurrentUser(username);
+            setCurrentUser(currentUser);
+          } catch (err) {
+            console.error("App loadUserInfo: problem loading", err);
+            setCurrentUser(null);
           }
-          setInfoLoaded(true);
         }
-          // set infoLoaded to false while async getCurrentUser runs; once the
-    // data is fetched (or even if an error happens!), this will be set back
-    // to false to control the spinner.
-          setInfoLoaded(false);
-          getCurrentUser();
+        setInfoLoaded(true);
       }
-, [token]);
+      // set infoLoaded to false while async getCurrentUser runs; once the
+      // data is fetched (or even if an error happens!), this will be set back
+      // to false to control the spinner.
+      setInfoLoaded(false);
+      getCurrentUser();
+    },
+    [token]
+  );
 
-/** handles site-wide logout */
- function logout() {
+  /** handles site-wide logout */
+  function logout() {
     setCurrentUser(null);
     setToken(null);
- }
+  }
 
- /*** Handles site-wide signup
-  * 
-  * Automatically logs them in (Set token) upon signup.
-  * 
-  * 
-  */
+  /*** Handles site-wide signup
+   *
+   * Automatically logs them in (Set token) upon signup.
+   *
+   *
+   */
 
-
-  async function signup(signupData){
-      try{
-          let token = await GrooveApi.signup(signupData);
-          setToken(token);
-          return { success: true};
-      } catch (errors) {
-          console.error("signup failed", errors);
-          return { success: false, errors };
-      }
+  async function signup(signupData) {
+    try {
+      let token = await GrooveApi.signup(signupData);
+      setToken(token);
+      return { success: true };
+    } catch (errors) {
+      console.error("signup failed", errors);
+      return { success: false, errors };
+    }
   }
 
   /**Handles site-wide login */
   async function login(loginData) {
-      try{
-          let token = await GrooveApi.login(loginData);
-          setToken(token);
-          return { success: true};
-      } catch (errors) {
-          console.error("login failed", errors);
-          return { success: false, errors};
-      }
+    try {
+      let token = await GrooveApi.login(loginData);
+      setToken(token);
+      return { success: true };
+    } catch (errors) {
+      console.error("login failed", errors);
+      return { success: false, errors };
+    }
   }
 
-//   async function getUserInfo(){
-//     try{
-//         let user = await GrooveApi.getCurrentUser(currentUser.username);
-//     }catch (errors){
+  if (!infoLoaded) return <LoadingSpinner />;
 
-//     }
-//   }
- 
-//   async function handleSubmit(termFromSearchBar){
-//       try{
-//         const response = await youtube.get('/search', {
-//             params: {
-//                 q: termFromSearchBar
-//             }
-//         })
-//         setVideos(response.data.items);
-//         console.log("this is response", response);
-//       } catch (errors){
-//         console.error("data fetch failed", errors);
-//         return { success: false, errors};
-//       }
-//   }
-
-//   function handleVideoSelect(video){
-//       setSelectedVideo(video);
-//   }
-  
-  
-
-  if(!infoLoaded) return <LoadingSpinner/>;
-
-  return(
-      <>
+  return (
+    <>
       <BrowserRouter>
-      
-        <UserContext.Provider
-          value={{ currentUser, setCurrentUser}}>
-              <div className="App other-content">
-                  <Navigation logout={logout}/>
-                  <Routes login={login} signup={signup} profile={currentUser}/>
-                  
-              </div>
-        
-      {/* <div className='ui container' style={{marginTop: '1em'}}>
-     
-      <div className='ui grid'>
-          <div className="ui row">
-              <div className="eleven wide column">
-                  <VideoDetail video={selectedVideo}/>
-              </div>
-              <div className="five wide column">
-                  <VideoList handleVideoSelect={handleVideoSelect} videos={videos}/>
-              </div>
+        <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+          <div className="App other-content">
+            <Navigation logout={logout} />
+            <Routes login={login} signup={signup} profile={currentUser} />
           </div>
-      </div>
-  </div> */}
-  </UserContext.Provider>
-        
+        </UserContext.Provider>
       </BrowserRouter>
-  </>
+    </>
   );
 }
 

@@ -35,7 +35,7 @@
     }
     }
 
-    My database schema will have four tables namely users, playlists, videos and follows. The users table has the username as the primary key. The playlists table stores all user playlists with username as the foriegn key. The videos table stores the api_video id and uses playlist_id as the foreign key. The follows table uses username as foreign key from users table.
+    My database schema will have three tables namely users, playlists, and  videos. The users table has the username as the primary key. The playlists table stores all user playlists with username as the foriegn key. The videos table stores the api_video id and uses playlist_id as the foreign key. 
 
     The only issue i see with using the API would be with embedding part. The rest of the data is easy-to work with for my project.
 
@@ -43,7 +43,7 @@
 
     My app will include the search functionality which helps users to access videos and save it to their own personal playlists.
 
-    Groove will have a home page which allows users to login or signup along with searching for videos. While searching the user gets a list of videos based on the serach criteria. Each video comes with a add to playlist button but the user will be allowed to add the video to a playlist only after logging into the account. Once Logged in the user will have four tabs namely profile, playlists, community and logout. The profile tab gives access to user profile details and allows user to edit his details. The playlists tab lists all the playlists that the user has saved in his account. He will be able to edit, delete or create new playlists from this tab. The community tab allows user to follow other users and view the users followers. 
+    Groove will have a home page which allows users to login or signup along with searching for videos. While searching the user gets a list of videos based on the serach criteria. Each video comes with a add to playlist button but the user will be allowed to add the video to a playlist only after logging into the account. Once Logged in the user will have four tabs namely profile, playlists, search and logout. The profile tab gives access to user profile details and allows user to edit his details. The playlists tab lists all the playlists that the user has saved in his account. He will be able to edit, delete or create new playlists from this tab.
 
 
     The stretch feature for my app would be to access videos from different apis. For eg: from snaptube dailymotion and vimeo. 
