@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState , useContext} from "react";
 import "./video.css";
 import ListOfPlaylists from "../playlists/ListOfPlaylists";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import UserContext from "../auth/UserContext"
 
 const VideoDetail = ({ video }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const { currentUser } = useContext(UserContext);
+  console.log(currentUser)
   if (!video) {
     return (
       <div>
@@ -22,10 +24,15 @@ const VideoDetail = ({ video }) => {
 
   return (
     <div>
-      <div className="ui embed">
-        <iframe src={videoSrc} allowFullScreen title="Video player" />
-      </div>
-      <div className="ui segment">
+      
+      {currentUser ?
+      <>
+         <div className="ui embed">
+        
+      <iframe src={videoSrc} allowFullScreen title="Video player" />
+      
+       </div>
+          <div className="ui segment">
         <Button variant="warning" onClick={handleShow}>
           Add to Playlist
         </Button>
@@ -53,6 +60,16 @@ const VideoDetail = ({ video }) => {
           </Modal.Footer>
         </Modal>
       </div>
+      </>
+        : (
+          <div className="ui embed">
+           <div className="warning"> <h2> To add songs to your playlist please login</h2></div>
+        <iframe src={videoSrc} allowFullScreen title="Video player" />
+        
+      </div>
+        )
+      }
+      
     </div>
   );
 };

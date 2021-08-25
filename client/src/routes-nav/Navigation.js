@@ -57,6 +57,11 @@ function Navigation({ logout }) {
             Sign Up
           </NavLink>
         </li>
+        <li className="nav-item mr-4">
+          <NavLink className="nav-link" to="/search">
+            Search
+          </NavLink>
+        </li>
       </ul>
     );
   }

@@ -19,7 +19,7 @@
 
 <h2><b>Click here to view the app</b></h2>
 
-[Groove](https://curious-rock.surge.sh/playlists)
+[Groove](https://obedient-lock.surge.sh/)
 
 <h2><b>Installation</b></h2>
 

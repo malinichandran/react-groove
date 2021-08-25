@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import"./Homepage.css";
 import UserContext from "../auth/UserContext";
 import FeaturedPage from "../featured/FeaturedPage";
+import SearchBar from "../search/SearchBar";
+import Searchbar from "../search/SearchBar";
 
 /*** Homepage of site 
  * 
@@ -26,6 +28,8 @@ function Homepage() {
                    <FeaturedPage/>
                    </div>
                    : (
+                       <>
+                       
                     <div className="container text-center">
                     <h1 className="mb-4 font-weight-bold">
                         Groove
@@ -43,6 +47,7 @@ function Homepage() {
                           
                        </p>
                        </div>
+                       </>
                    )}
         </div>
     );

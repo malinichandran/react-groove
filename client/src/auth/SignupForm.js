@@ -57,7 +57,7 @@ import profilepic from "../images/profilepic.jpeg"
                 
 
                 <div className="form-group">
-                  <label>First name</label>
+                  <label>First Name</label>
                   <input
                       name="first_name"
                       className="form-control"
@@ -66,7 +66,7 @@ import profilepic from "../images/profilepic.jpeg"
                   />
                 </div>
                 <div className="form-group">
-                  <label>Last name</label>
+                  <label>Last Name</label>
                   <input
                       name="last_name"
                       className="form-control"
@@ -96,27 +96,7 @@ import profilepic from "../images/profilepic.jpeg"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label>Profile Picture</label>
-                  <input
-                      name="profile_pic"
-                      className="form-control"
-                     
-                      placeholder="Optional"
-                      onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Country of living</label>
-                  <input
-                      name="country"
-                      className="form-control"
-                      value={formData.country}
-                      placeholder="Optional"
-                      onChange={handleChange}
-                  />
-                </div>
+               
 
                 {formErrors.length
                     ? <Alert type="danger" messages={formErrors} />

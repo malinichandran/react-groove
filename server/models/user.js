@@ -75,7 +75,7 @@ class User {
         `Duplicate username: ${username}. Choose a different username`
       );
     }
-
+    
     const hashedPassword = await brcypt.hash(password, BCRYPT_WORK_FACTOR);
     if (profile_pic === "") {
       profile_pic = null;
@@ -138,6 +138,7 @@ class User {
     const user = result.rows[0];
 
     return user;
+
   }
 
   /**Find all users.
