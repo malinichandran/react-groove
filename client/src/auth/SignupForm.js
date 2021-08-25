@@ -101,7 +101,7 @@ import profilepic from "../images/profilepic.jpeg"
                   <input
                       name="profile_pic"
                       className="form-control"
-                      value={formData.profile_pic}
+                     
                       placeholder="Optional"
                       onChange={handleChange}
                   />
