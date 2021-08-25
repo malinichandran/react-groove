@@ -19,7 +19,7 @@
 
 <h2><b>Click here to view the app</b></h2>
 
-[Groove](https://obedient-lock.surge.sh/)
+[Groove](https://many-pear.surge.sh/)
 
 <h2><b>Installation</b></h2>
 
