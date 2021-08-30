@@ -30,6 +30,7 @@ function LoginForm( {login}) {
         if(result.success){
             history.push("/")
         } else {
+            
             setFormErrors(result.errors);
         }
     }

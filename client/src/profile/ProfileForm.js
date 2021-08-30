@@ -38,7 +38,13 @@ function ProfileForm() {
     try {
       updatedUser = await GrooveApi.saveProfile(username, profileData);
     } catch (errors) {
+      if(errors[0].includes("instance")){
+        setFormErrors([errors[0].slice(9)])
+
+     }else{
       setFormErrors(errors);
+     }
+     
       return;
     }
     setFormData((f) => ({ ...f, password: "" }));
@@ -107,12 +113,12 @@ function ProfileForm() {
                 <input
                   name="profile_pic"
                   className="form-control"
-                  value={formData.profile_pic}
+                  placeholder="Paste an image link to have as your profile image"
                   onChange={handleChange}
                 />
               </div>
               <div className="form-group">
-                <label>Country of living</label>
+                <label>Country</label>
                 <input
                   name="country"
                   className="form-control"

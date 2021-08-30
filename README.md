@@ -1,7 +1,7 @@
 <h1><b>Groove</b></h1>
 
 <h2><b>Description</b></h2>
-<p>With many number of video apps like youtube, Vimeo, Twitch etc, we can access all our favorite videos from all these different sites. Groove is a one stop place for all your favorite music from youtube, vimeo and many more. Though currently the app incorporates only videos from youtube, in future it will be including videos from all video apps. Groove allows users to search for their favorite music videos and allows them to add it to their existing playlists or lets them create a new playlist. The users can enjoy  all of their favorite videos from their playlist through Groove without any advertisements.</p>
+<p>With many number of video apps like youtube, Vimeo, Twitch etc, we can access all our favorite videos from all these different sites. Groove is a one stop place for all your favorite music from youtube, vimeo and many more.  Groove allows users to search for their favorite music videos and allows them to add it to their existing playlists or lets them create a new playlist. The users can enjoy  all of their favorite videos from their playlist through Groove without any advertisements.</p>
 
 <h2><b>Features</b></h2>
 
@@ -17,7 +17,7 @@
 
 *  Allows user to edit profile. The account can be deleted too which will simultaneously delete all user data.
 
-<h2><b>Click here to view the app</b></h2>
+<h2><b>Live App Link</b></h2>
 
 [Groove](https://many-pear.surge.sh/)
 

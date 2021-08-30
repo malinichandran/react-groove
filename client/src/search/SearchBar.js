@@ -50,7 +50,9 @@ function Searchbar() {
               type="text"
               placeholder="Search for your favorite videos.."
             />
+            <button className="searchbutton">Search</button>
           </div>
+      
         </form>
 
         <div>

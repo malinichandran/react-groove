@@ -29,7 +29,13 @@ import profilepic from "../images/profilepic.jpeg"
         if(result.success) {
             history.push("/");
         } else {
+          console.log(result.errors);
+            if(result.errors[0].includes("instance")){
+              setFormErrors([result.errors[0].slice(9)])
+
+           }else{
             setFormErrors(result.errors);
+           }
         }
     }
    

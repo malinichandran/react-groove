@@ -29,3 +29,9 @@ input{
 .eleven.wide.column{
   color:white;
 }
+
+.searchbutton{
+  height:30px;
+  background-color: orange;
+  cursor: pointer;
+}
